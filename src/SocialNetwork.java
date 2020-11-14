@@ -23,12 +23,24 @@ public class SocialNetwork {
     }
 
     public void follow(int ID, String user) {
-        System.out.println("Cerco il post:");
+        System.out.print("Cerco il post");
+        Set<String> toAdd;
         for (Post post: postSet){
             if (post.getId() == ID){
-                linkedPeople.get(post.getAuthor()).add(user);
+                toAdd = linkedPeople.get(post.getAuthor());
+                if (toAdd == null){
+                    toAdd = new HashSet<>();
+                    toAdd.add(user);
+                    linkedPeople.put(post.getAuthor(), toAdd);
+                    System.out.println("\nUtente seguito con successo");
+                    return;
+                }
+                else {
+                    linkedPeople.get(post.getAuthor()).add(user);
+                    System.out.println("\nUtente seguito con successo");
+                    return;
+                }
             }
-
             System.out.print(".");
         }
         System.out.println("Post non trovato");
