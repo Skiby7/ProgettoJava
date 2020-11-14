@@ -5,7 +5,8 @@ public class SocialNetwork {
 
 
     private HashMap<String, Set<Post>> network = new HashMap<>();
-    private HashMap<String, Set<String>> linkedPeople = new HashMap<>();
+    private HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
+    private HashMap<String, Set<String >> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
     private Set<Post> postSet = new HashSet<>();
     private final String separator = "---------------------";
 
@@ -32,18 +33,34 @@ public class SocialNetwork {
                     toAdd = new HashSet<>();
                     toAdd.add(user);
                     linkedPeople.put(post.getAuthor(), toAdd);
+                    post.addFollow(user);
                     System.out.println("\nUtente seguito con successo");
+                    addFollowed(user, post.getAuthor());
                     return;
                 }
                 else {
                     linkedPeople.get(post.getAuthor()).add(user);
+                    post.addFollow(user);
                     System.out.println("\nUtente seguito con successo");
+                    addFollowed(user, post.getAuthor());
                     return;
                 }
             }
             System.out.print(".");
         }
         System.out.println("Post non trovato");
+    }
+
+    private void addFollowed (String User, String seguito){
+        Set<String> toAdd = followed.get(User);
+        if (toAdd == null){
+            toAdd = new HashSet<>();
+            toAdd.add(seguito);
+            followed.put(User, toAdd);
+        }
+        else {
+            followed.get(User).add(seguito);
+        }
     }
 
     public void printAllPosts(){
@@ -96,35 +113,58 @@ public class SocialNetwork {
         return guessFollowers(postList);
     }
 
-    public List<String> influencers (Map<String, Set<String>> followers){
+//    public List<String> influencers (Map<String, Set<String>> followers){
+//        List<String> influencers = new ArrayList<>();
+//        for (Map.Entry<String, Set<String>> entry: followers.entrySet()){
+//            if (influencers.isEmpty())
+//                influencers.add(entry.getKey());
+//
+//            else {
+//                int i = 0;
+//                while (entry.getValue().size() < followers.get(influencers.get(i)).size())
+//                    i++;
+//
+//                influencers.add(i, entry.getKey());
+//            }
+//        }
+//        return influencers;
+//    }
+//
+//    public List<String> influencers (){
+//        List<String> influencers = new ArrayList<>();
+//        for (Map.Entry<String, Set<String>> entry: linkedPeople.entrySet()){
+//            if (influencers.isEmpty())
+//                influencers.add(entry.getKey());
+//
+//            else {
+//                int i = 0;
+//                while (entry.getValue().size() < linkedPeople.get(influencers.get(i)).size())
+//                    i++;
+//
+//                influencers.add(i, entry.getKey());
+//            }
+//        }
+//        return influencers;
+//    }
+
+    public List<String> influencers(){
         List<String> influencers = new ArrayList<>();
-        for (Map.Entry<String, Set<String>> entry: followers.entrySet()){
-            if (influencers.isEmpty())
+        for (Map.Entry<String,Set<String>> entry: linkedPeople.entrySet()){
+            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty()) || entry.getValue().size() > followed.get(entry.getKey()).size() )
                 influencers.add(entry.getKey());
-
-            else {
-                int i = 0;
-                while (entry.getValue().size() < followers.get(influencers.get(i)).size())
-                    i++;
-
-                influencers.add(i, entry.getKey());
             }
-        }
         return influencers;
     }
 
-    public List<String> influencers (){
+    public List<String> influencers(Map<String, Set<String>> followers){
         List<String> influencers = new ArrayList<>();
-        for (Map.Entry<String, Set<String>> entry: linkedPeople.entrySet()){
-            if (influencers.isEmpty())
-                influencers.add(entry.getKey());
-
+        for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
+            if (followers.get(entry.getKey()) == null) {
+                continue;
+            }
             else {
-                int i = 0;
-                while (entry.getValue().size() < linkedPeople.get(influencers.get(i)).size())
-                    i++;
-
-                influencers.add(i, entry.getKey());
+                if (entry.getValue().size() > followed.get(entry.getKey()).size())
+                    influencers.add(entry.getKey());
             }
         }
         return influencers;
@@ -165,6 +205,7 @@ public class SocialNetwork {
         }
         if (contains.isEmpty())
             System.out.println("Non ho trovato risultati :(");
+        System.out.println("Ecco i post che ho trovato:");
         return contains;
     }
 
