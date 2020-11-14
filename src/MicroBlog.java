@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,7 +25,9 @@ public class MicroBlog {
 
                 do {
                     System.out.println("Ciao " + user + ", cosa vuoi fare?");
-                    System.out.println("1. Posta 2. Stampa tutti i post 3. Stampa tutti gli utenti iscritti\n 4. Cerca post per utente 5. Cerca post per contenuto 6. Segui un post 0. Esci");
+                    System.out.println("1. Posta 2. Stampa tutti i post 3. Stampa tutti gli utenti iscritti\n " +
+                                "4. Cerca post per utente 5. Cerca post per contenuto 6. Segui un post " +
+                                    "7. Stampa la rete sociale 8. Scopri gli Influencers 0. Esci");
                     choice = scan.nextInt();
                     switch (choice) {
                         case 1:
@@ -55,33 +58,21 @@ public class MicroBlog {
                             break;
 
                         case 5:
-//                            scan.nextLine();
-//                            System.out.println("Inserisci le parole da cercare:");
-//                            String tmp;
-//                            List<String> keywords = new LinkedList<>();
-//                            tmp = scan.nextLine();
-//                            String[] tokens = tmp.split(" ");
-//                            for(String token: tokens){
-//                                keywords.add(token);
-//                            }
-//                            if (keywords.size() == 1){
-//                                System.out.println();
-//                                System.out.println("Ecco i post che ho trovato:");
-//                                for(Post postContaining: network.containing(keywords.get(0))){
-//                                    postContaining.printPost();
-//                                    System.out.println();
-//                                }
-//                                System.out.println("_________________________");
-//                                break;
-//                            }
-//                            System.out.println();
-//                            System.out.println("Ecco i post che ho trovato:");
-//                            for(Post postContaining: network.containing(keywords)){
-//                                postContaining.printPost();
-//                                System.out.println();
-//                            }
-//                            System.out.println("_________________________");
-//                            break;
+                            scan.nextLine();
+                            System.out.println("Inserisci le parole da cercare:");
+                            String tmp;
+                            tmp = scan.nextLine();
+                            String[] tokens = tmp.split(" ");
+                            List<String> keywords = new LinkedList<>(Arrays.asList(tokens));
+                            System.out.println();
+                            System.out.println("Ecco i post che ho trovato:");
+                            for(Post postContaining: network.containing(keywords)){
+                                postContaining.printPost();
+                                System.out.println();
+                            }
+                            System.out.println("_________________________");
+                            break;
+
 
                         case 6:
                             scan.nextLine();
@@ -95,8 +86,8 @@ public class MicroBlog {
                             break;
 
                         case 8:
-                            List<String> inluencers = network.influencers();
-                            for (String infl: inluencers)
+                            List<String> influencers = new LinkedList<>(network.influencers());
+                            for (String infl: influencers)
                                 System.out.println(infl);
                             break;
 
