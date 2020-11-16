@@ -1,7 +1,7 @@
-import java.sql.PseudoColumnUsage;
+
 import java.util.*;
 
-public class SocialNetwork {
+public class SocialNetwork implements SocialInterface {
 
 
     private HashMap<String, Set<Post>> network = new HashMap<>();
@@ -10,7 +10,10 @@ public class SocialNetwork {
     private Set<Post> postSet = new HashSet<>();
     private final String separator = "---------------------";
 
-    public void addPost(String author, Post newPost){
+    public void addPost(Post newPost) throws SocialNetworkError{
+        String author = newPost.getAuthor();
+        if (newPost.getText().length() >= 140)
+            throw new SocialNetworkError("Il testo puo' contenere al massimo 140 caratteri.");
         Set<Post> toAdd = network.get(author);
         if(toAdd == null){
             toAdd = new HashSet<>();
@@ -36,14 +39,12 @@ public class SocialNetwork {
                     toAdd.add(user);
                     linkedPeople.put(post.getAuthor(), toAdd);
                     post.addFollow(user);
-                    System.out.println("\nUtente seguito con successo");
                     addFollowed(user, post.getAuthor());
                     return;
                 }
                 else {
                     linkedPeople.get(post.getAuthor()).add(user);
                     post.addFollow(user);
-                    System.out.println("\nUtente seguito con successo");
                     addFollowed(user, post.getAuthor());
                     return;
                 }
@@ -96,57 +97,20 @@ public class SocialNetwork {
         return posts;
     }
 
-    public Map<String,  Set<String>>  guessFollowers(List<Post> ps){
+
+
+    public Map<String,  Set<String>>  guessFollowers(List<Post> ps) {
         HashMap<String, Set<String>> networkByFollowers = new HashMap<>();
-        for(Post post : ps){
-            if (networkByFollowers.get(post.getAuthor())==null){
-                Set<String> toAdd = new HashSet<>(post.getFollowers());
-                networkByFollowers.put(post.getAuthor(), toAdd);
-
-            }
-            else
-                networkByFollowers.get(post.getAuthor()).addAll(post.getFollowers());          }
-
+        for (Post post: ps){
+            if (networkByFollowers.get(post.getAuthor()) == null && linkedPeople.get(post.getAuthor())!=null)
+                networkByFollowers.put(post.getAuthor(), linkedPeople.get(post.getAuthor()));
+        }
         return networkByFollowers;
     }
-    public Map<String,  Set<String>>  guessFollowers(){
-        List<Post> postList = new LinkedList<>(postSet);
-        return guessFollowers(postList);
-    }
 
-//    public List<String> influencers (Map<String, Set<String>> followers){
-//        List<String> influencers = new ArrayList<>();
-//        for (Map.Entry<String, Set<String>> entry: followers.entrySet()){
-//            if (influencers.isEmpty())
-//                influencers.add(entry.getKey());
-//
-//            else {
-//                int i = 0;
-//                while (entry.getValue().size() < followers.get(influencers.get(i)).size())
-//                    i++;
-//
-//                influencers.add(i, entry.getKey());
-//            }
-//        }
-//        return influencers;
-//    }
-//
-//    public List<String> influencers (){
-//        List<String> influencers = new ArrayList<>();
-//        for (Map.Entry<String, Set<String>> entry: linkedPeople.entrySet()){
-//            if (influencers.isEmpty())
-//                influencers.add(entry.getKey());
-//
-//            else {
-//                int i = 0;
-//                while (entry.getValue().size() < linkedPeople.get(influencers.get(i)).size())
-//                    i++;
-//
-//                influencers.add(i, entry.getKey());
-//            }
-//        }
-//        return influencers;
-//    }
+    public Map<String,  Set<String>>  guessFollowers(){
+        return linkedPeople;
+    }
 
     public List<String> influencers(){
         List<String> influencers = new ArrayList<>();
@@ -177,6 +141,13 @@ public class SocialNetwork {
             mentionedUser.add(entry.getKey());
 
         return mentionedUser;
+    }
+    public List<String> getMentionedUser(List<Post> ps) {
+        Set<String> mentionedUserSet = new HashSet<>();
+        for (Post post: ps)
+            mentionedUserSet.add(post.getAuthor());
+
+        return new LinkedList<>(mentionedUserSet);
     }
 
     public List<Post> writtenBy(String username){

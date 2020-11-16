@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 public interface SocialInterface {
-    void addPost(String author, Post newPost);
+    void addPost(Post newPost) throws SocialNetworkError;
     void follow(int ID, String user) throws SocialNetworkError;
     void printAllPosts();
     void printSocialNetwork(HashMap<String, Set<String>> microNet);
