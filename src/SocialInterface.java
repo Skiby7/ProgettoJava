@@ -10,7 +10,7 @@ public interface SocialInterface {
     void printSocialNetwork(HashMap<String, Set<String>> microNet);
     Map<String,  Set<String>> guessFollowers(List<Post> ps);
     List<String> influencers(Map<String, Set<String>> followers);
-    List<String> getMentionedUser();
+    Set<String> getMentionedUser();
     List<Post> writtenBy(String username);
     List<Post> writtenBy(List<Post> ps, String username);
     List<Post> containing(List<String> words);

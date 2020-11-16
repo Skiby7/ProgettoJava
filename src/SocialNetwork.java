@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class SocialNetwork implements SocialInterface {
@@ -119,6 +118,7 @@ public class SocialNetwork implements SocialInterface {
                     || entry.getValue().size() > followed.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
             }
+        Collections.sort(influencers);
         return influencers;
     }
 
@@ -129,30 +129,29 @@ public class SocialNetwork implements SocialInterface {
                     || entry.getValue().size() > followed.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
         }
-
+        Collections.sort(influencers);
         return influencers;
     }
 
 
-    public List<String> getMentionedUser() {
-        List<String> mentionedUser = new LinkedList<>();
+    public Set<String> getMentionedUser() {
+        Set<String> mentionedUser = new TreeSet<>();
 
         for (Map.Entry<String, Set<Post>> entry : network.entrySet())
             mentionedUser.add(entry.getKey());
-
         return mentionedUser;
     }
-    public List<String> getMentionedUser(List<Post> ps) {
-        Set<String> mentionedUserSet = new HashSet<>();
+    public Set<String> getMentionedUser(List<Post> ps) {
+        Set<String> mentionedUser = new TreeSet<>();
         for (Post post: ps)
-            mentionedUserSet.add(post.getAuthor());
-
-        return new LinkedList<>(mentionedUserSet);
+            mentionedUser.add(post.getAuthor());
+        return mentionedUser;
     }
 
     public List<Post> writtenBy(String username){
-
-        return new LinkedList<Post>(network.get(username));
+        List<Post> wroteBy = new LinkedList<Post>(network.get(username));
+        Collections.sort(wroteBy);
+        return wroteBy;
     }
 
     public List<Post> writtenBy(List<Post> ps, String username){
@@ -161,7 +160,7 @@ public class SocialNetwork implements SocialInterface {
         for (Post post: ps)
             if (post.getAuthor().equals(username))
                 wroteBy.add(post);
-
+        Collections.sort(wroteBy);
         return wroteBy;
     }
 
@@ -176,6 +175,7 @@ public class SocialNetwork implements SocialInterface {
         if (contains.isEmpty())
             System.out.println("Non ho trovato risultati :(");
         System.out.println("Ecco i post che ho trovato:");
+        Collections.sort(contains);
         return contains;
     }
 

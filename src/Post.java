@@ -1,16 +1,13 @@
+
 import java.sql.Timestamp;
 import java.util.HashSet;
 
-public class Post {
+public class Post implements PostInterface, Comparable<Post>{
     private final int id;
     private final String author;
     private final String text;
     private final Timestamp time;
     private HashSet<String> followers;
-
-    public Post(String text, int id){
-        this("Anonymous", text, id);
-    }
 
     public Post(String author, String text, int id){
 
@@ -44,15 +41,20 @@ public class Post {
 
 
     public void printPost(){
-        System.out.println("Autore: " + this.getAuthor() + "\tPost ID:" + this.getId());
+        System.out.println("Autore: " + this.getAuthor() + "\tPost ID:" + this.getId() + "\n----------");
         System.out.println(this.getText());
         System.out.println("Data e ora del post: " + this.getTime().toString());
         if (this.followers.size()!=0) {
-            System.out.println("Questo post e' seguito da:");
+            System.out.print("----------\nQuesto post e' seguito da: ");
             for (String follower : followers) {
                 System.out.print(follower + "   ");
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public int compareTo(Post post) {
+        return post.getId()-this.getId();
     }
 }
