@@ -23,11 +23,13 @@ public class SocialNetwork {
         postSet.add(newPost);
     }
 
-    public void follow(int ID, String user) {
-        System.out.print("Cerco il post");
+    public void follow(int ID, String user) throws SocialNetworkError{
+
         Set<String> toAdd;
         for (Post post: postSet){
             if (post.getId() == ID){
+                if (post.getAuthor().equals(user))
+                    throw new SocialNetworkError("Non ci si puo' seguire da soli!");
                 toAdd = linkedPeople.get(post.getAuthor());
                 if (toAdd == null){
                     toAdd = new HashSet<>();
@@ -46,12 +48,11 @@ public class SocialNetwork {
                     return;
                 }
             }
-            System.out.print(".");
         }
         System.out.println("Post non trovato");
     }
 
-    private void addFollowed (String User, String seguito){
+    private void addFollowed (String User, String seguito)  {
         Set<String> toAdd = followed.get(User);
         if (toAdd == null){
             toAdd = new HashSet<>();
@@ -150,7 +151,8 @@ public class SocialNetwork {
     public List<String> influencers(){
         List<String> influencers = new ArrayList<>();
         for (Map.Entry<String,Set<String>> entry: linkedPeople.entrySet()){
-            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty()) || entry.getValue().size() > followed.get(entry.getKey()).size() )
+            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+                    || entry.getValue().size() > followed.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
             }
         return influencers;
@@ -159,14 +161,11 @@ public class SocialNetwork {
     public List<String> influencers(Map<String, Set<String>> followers){
         List<String> influencers = new ArrayList<>();
         for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
-            if (followers.get(entry.getKey()) == null) {
-                continue;
-            }
-            else {
-                if (entry.getValue().size() > followed.get(entry.getKey()).size())
-                    influencers.add(entry.getKey());
-            }
+            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+                    || entry.getValue().size() > followed.get(entry.getKey()).size())
+                influencers.add(entry.getKey());
         }
+
         return influencers;
     }
 
