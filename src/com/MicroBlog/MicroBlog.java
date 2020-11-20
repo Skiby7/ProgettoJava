@@ -50,7 +50,7 @@ public class MicroBlog {
                             Post newPost = new Post(user, text, ++post_counter);
                             try {
                                 network.addPost(newPost);
-                            }catch (IllegalLengthException e){
+                            }catch (IllegalLengthException | EmptyTextException e){
                                 System.out.println(e);
                             }
 

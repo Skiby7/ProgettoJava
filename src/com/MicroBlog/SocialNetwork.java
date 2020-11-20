@@ -2,24 +2,27 @@ package com.MicroBlog;
 
 import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
+
+import javax.print.attribute.standard.NumberUp;
 import java.util.*;
 public class SocialNetwork implements SocialInterface {
 
 
 //    private HashMap<String, Set<Post>> network = new HashMap<>();
     private HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
-    private HashMap<String, Set<String >> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
+    private HashMap<String, Set<String>> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
     private Set<Post> postSet = new HashSet<>();
     private final String separator = "---------------------";
 
-    public void addPost(Post newPost) throws IllegalLengthException, NullPointerException{
+    public void addPost(Post newPost) throws IllegalLengthException, EmptyTextException, NullPointerException{
 //        String author = newPost.getAuthor();
+
         if (newPost.getText().length() >= 140) // Check della lunghezza del testo
-            throw new IllegalLengthException("Il testo puo' contenere al massimo 140 caratteri.\n");
+            throw new IllegalLengthException("Il testo puo' contenere al massimo 140 caratteri.");
         if (newPost.getText().length() == 0)
-            throw new IllegalLengthException("Il testo non puo' essere vuoto.\n");
-        if (newPost == null)
-            throw new NullPointerException("Il post non e' valido");
+            throw new EmptyTextException("Il testo non puo' essere vuoto.");
+
+
 //        Set<Post> toAdd = this.network.get(author);
 //        if(toAdd == null){
 //            toAdd = new HashSet<>();
@@ -32,9 +35,7 @@ public class SocialNetwork implements SocialInterface {
         postSet.add(newPost);
     }
 
-    public void follow(int ID, String user) throws AutoFollowException, NullPointerException{
-        if (user == null)
-            throw new NullPointerException("Ciao ");
+    public void follow(int ID, String user) throws AutoFollowException, NullPointerException {
 
         Set<String> toAdd;
         for (Post post: this.postSet){
@@ -61,18 +62,20 @@ public class SocialNetwork implements SocialInterface {
         System.out.println("Post non trovato");
     }
 
-    private void addFollowed (String User, String seguito)  {
-        Set<String> toAdd = followed.get(User);
+    private void addFollowed (String User, String seguito) throws NullPointerException  {
+        Set<String> toAdd = this.followed.get(User);
         if (toAdd == null){
             toAdd = new HashSet<>();
             toAdd.add(seguito);
-            followed.put(User, toAdd);
+            this.followed.put(User, toAdd);
         }
-        else {
-            followed.get(User).add(seguito);
-        }
-    }
+        else
+            this.followed.get(User).add(seguito);
 
+    }
+    // REQUIRES: User != null && seguito != null
+    // EFFECTS: aggiunge gli utenti User e seguito alla mappa followed, che ha come chiave gli utenti della rete sociale (User) e come valore gli utenti seguiti dal User
+    // MODIFIES: this
     public void printAllPosts(){
         for (Post toPrint: postSet){
             System.out.println(separator + "\n");
@@ -92,7 +95,8 @@ public class SocialNetwork implements SocialInterface {
 
     }
 
-    public Map<String,  Set<String>>  guessFollowers(List<Post> ps) {
+    public Map<String,  Set<String>>  guessFollowers(List<Post> ps) throws NullPointerException{
+
         HashMap<String, Set<String>> networkByFollowers = new HashMap<>();
         for (Post post: ps){
             if (networkByFollowers.get(post.getAuthor()) == null && this.linkedPeople.get(post.getAuthor())!=null)
@@ -106,21 +110,22 @@ public class SocialNetwork implements SocialInterface {
     }
 
     public List<String> influencers(){
-        List<String> influencers = new ArrayList<>();
-        for (Map.Entry<String,Set<String>> entry: linkedPeople.entrySet()){
-            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
-                    || entry.getValue().size() > followed.get(entry.getKey()).size())
-                influencers.add(entry.getKey());
-            }
-        Collections.sort(influencers);
-        return influencers;
+        return influencers(this.linkedPeople);
+//      List<String> influencers = new ArrayList<>();
+//        for (Map.Entry<String,Set<String>> entry: linkedPeople.entrySet()){
+//            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+//                    || entry.getValue().size() > followed.get(entry.getKey()).size())
+//                influencers.add(entry.getKey());
+//            }
+//        Collections.sort(influencers);
+//        return influencers;
     }
 
-    public List<String> influencers(Map<String, Set<String>> followers){
+    public List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException{
         List<String> influencers = new ArrayList<>();
         for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
-            if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
-                    || entry.getValue().size() > followed.get(entry.getKey()).size())
+            if ((this.followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+                    || entry.getValue().size() > this.followed.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
         }
         Collections.sort(influencers);
@@ -129,25 +134,30 @@ public class SocialNetwork implements SocialInterface {
 
 
     public Set<String> getMentionedUser() {
-        Set<String> mentionedUsers = new TreeSet<>();
-
-        for (Post post: postSet)
-            mentionedUsers.add(post.getAuthor());
-        return mentionedUsers;
+        return getMentionedUser(new ArrayList<>(this.postSet));
+//        Set<String> mentionedUsers = new TreeSet<>();
+//
+//        for (Post post: this.postSet)
+//            mentionedUsers.add(post.getAuthor());
+//        return mentionedUsers;
     }
-    public Set<String> getMentionedUser(List<Post> ps) {
+    public Set<String> getMentionedUser(List<Post> ps) throws NullPointerException{
         Set<String> mentionedUsers = new TreeSet<>();
         for (Post post: ps)
             mentionedUsers.add(post.getAuthor());
         return mentionedUsers;
     }
 
-    public List<Post> writtenBy(String username){
-        List<Post> wroteBy = writtenBy(new ArrayList<>(this.postSet), username);
-        return wroteBy;
+    public List<Post> writtenBy(String username) throws IllegalArgumentException, NullPointerException{
+        if (username.length() == 0)
+            throw new IllegalArgumentException("Username non valido");
+        return writtenBy(new ArrayList<>(this.postSet), username);
     }
 
-    public List<Post> writtenBy(List<Post> ps, String username){
+    public List<Post> writtenBy(List<Post> ps, String username) throws IllegalArgumentException, NullPointerException{
+
+        if (username.length() == 0)
+            throw new IllegalArgumentException("Username non valido");
 
         List<Post> wroteBy = new ArrayList<>();
         for (Post post: ps)
@@ -162,7 +172,8 @@ public class SocialNetwork implements SocialInterface {
         return wroteBy;
     }
 
-    public List<Post> containing(List<String> words){
+    public List<Post> containing(List<String> words) throws NullPointerException{
+
         List<Post> contains = new ArrayList<>();
         for (Post toScan: this.postSet){
             for (String word: words)

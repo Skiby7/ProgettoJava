@@ -5,6 +5,7 @@ import com.MicroBlog.Interfaces.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
 
+
 public class Post implements PostInterface, Comparable<Post>{
     private final int id;
     private final String author;
@@ -13,6 +14,10 @@ public class Post implements PostInterface, Comparable<Post>{
     private HashSet<String> followers;
 
     public Post(String author, String text, int id){
+        if (id < 0)
+            throw new IllegalArgumentException("L'id deve essere maggiore di 0.");
+        if (author == null || text == null)
+            throw new NullPointerException();
 
         this.author = author; // Autore
         this.text = text; // Corpo del post
@@ -20,7 +25,8 @@ public class Post implements PostInterface, Comparable<Post>{
         this.time = new Timestamp(System.currentTimeMillis()); // Data e ora del post
         this.followers = new HashSet<String>(); // Lista di follower a cui piace il post
     }
-
+    // REQUIRES: author !=  null && text != null && id >= 0
+    // THROWS: IllegalArgumentException se id < 0 || NullPointerException se (author == null || text == null)
     public String getAuthor(){
         return this.author;
     }
@@ -38,9 +44,7 @@ public class Post implements PostInterface, Comparable<Post>{
         this.followers.add(follower);
     }
 
-    public HashSet<String> getFollowers(){
-        return this.followers;
-    }
+    public HashSet<String> getFollowers(){ return this.followers; }
 
 
     public void printPost(){
@@ -59,5 +63,6 @@ public class Post implements PostInterface, Comparable<Post>{
     @Override
     public int compareTo(Post post) {
         return post.getId()-this.getId();
-    }
+    } // override della funzione compareTo per ordinare secondo l'id de post
+
 }

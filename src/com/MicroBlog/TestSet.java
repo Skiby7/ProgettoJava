@@ -28,7 +28,7 @@ public class TestSet {
                     network.addPost(newPost);
                     if (i > 1 && i < 4 && (user.equals("Luisa") || user.equals("Edoardo") || user.equals("Leonardo")))
                         postList.add(newPost);
-                }catch (IllegalLengthException error){
+                }catch (IllegalLengthException | EmptyTextException error){
                     System.out.println(error);
                 }
             }
@@ -37,7 +37,7 @@ public class TestSet {
         try {
             Post newPost = new Post("Rocky", "Adrianaaa!!!", ++post_counter);
             network.addPost(newPost);
-        }catch (IllegalLengthException error){
+        }catch (IllegalLengthException | EmptyTextException error){
             System.out.println(error);
         }
 
@@ -45,7 +45,7 @@ public class TestSet {
         try {
             Post newPost = new Post("Mario", "It's me, Mario!", ++post_counter);
             network.addPost(newPost);
-        }catch (IllegalLengthException error){
+        }catch (IllegalLengthException | EmptyTextException error){
             System.out.println(error);
         }
 
@@ -53,7 +53,7 @@ public class TestSet {
             Post newPost = new Post("Pacman", "echo \"ILoveCandy\" >> /etc/pacman.conf", ++post_counter);
             network.addPost(newPost);
             postList.add(newPost);
-        }catch (IllegalLengthException error){
+        }catch (IllegalLengthException | EmptyTextException error){
             System.out.println(error);
         }
         for (String user: users)
@@ -69,14 +69,14 @@ public class TestSet {
             Post newPost = new Post("Yoda", "May the force be with you", ++post_counter);
             network.addPost(newPost);
             postList.add(newPost);
-        }catch (IllegalLengthException error){
+        }catch (IllegalLengthException | EmptyTextException error){
             System.out.println(error);
         }
 
         try {
             Post newPost = new Post("Ratchet & Clank", "We're back!", ++post_counter);
             network.addPost(newPost);
-        }catch (IllegalLengthException error){
+        }catch (IllegalLengthException | EmptyTextException error){
             System.out.println(error);
         }
 
@@ -175,8 +175,15 @@ public class TestSet {
         }catch (IllegalLengthException e){
 
             System.out.println(e);
-        }catch (NullPointerException NULL){
-            System.out.println("Post non valido");
+        }catch (EmptyTextException e) {
+            e.printStackTrace();
+        }
+        Post provanull = null;
+        try{
+            network.addPost(provanull);
+        }catch (IllegalLengthException | EmptyTextException e){
+            System.out.println(e);
         }
     }
+
 }
