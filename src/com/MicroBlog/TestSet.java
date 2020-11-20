@@ -1,7 +1,8 @@
+package com.MicroBlog;
 
-import java.awt.*;
+import com.MicroBlog.CustomExceptions.*;
+
 import java.util.*;
-import java.util.List;
 
 public class TestSet {
     public static void main(String args[]){
@@ -17,15 +18,17 @@ public class TestSet {
         words.add("conf");
         words.add("Leonardo");
         words.add("It's");
+
+
         for (String user: users){
             for (int i = 0; i < 5; i++){
                 try {
                     String toAdd = "Ciao, sono " + user + " e questo e' il post numero " + i;
                     Post newPost = new Post(user, toAdd, ++post_counter);
                     network.addPost(newPost);
-                    if (i > 1 && i < 4)
+                    if (i > 1 && i < 4 && (user.equals("Luisa") || user.equals("Edoardo") || user.equals("Leonardo")))
                         postList.add(newPost);
-                }catch (SocialNetworkError error){
+                }catch (IllegalLengthException error){
                     System.out.println(error);
                 }
             }
@@ -34,7 +37,7 @@ public class TestSet {
         try {
             Post newPost = new Post("Rocky", "Adrianaaa!!!", ++post_counter);
             network.addPost(newPost);
-        }catch (SocialNetworkError error){
+        }catch (IllegalLengthException error){
             System.out.println(error);
         }
 
@@ -42,7 +45,7 @@ public class TestSet {
         try {
             Post newPost = new Post("Mario", "It's me, Mario!", ++post_counter);
             network.addPost(newPost);
-        }catch (SocialNetworkError error){
+        }catch (IllegalLengthException error){
             System.out.println(error);
         }
 
@@ -50,7 +53,7 @@ public class TestSet {
             Post newPost = new Post("Pacman", "echo \"ILoveCandy\" >> /etc/pacman.conf", ++post_counter);
             network.addPost(newPost);
             postList.add(newPost);
-        }catch (SocialNetworkError error){
+        }catch (IllegalLengthException error){
             System.out.println(error);
         }
         for (String user: users)
@@ -66,14 +69,14 @@ public class TestSet {
             Post newPost = new Post("Yoda", "May the force be with you", ++post_counter);
             network.addPost(newPost);
             postList.add(newPost);
-        }catch (SocialNetworkError error){
+        }catch (IllegalLengthException error){
             System.out.println(error);
         }
 
         try {
             Post newPost = new Post("Ratchet & Clank", "We're back!", ++post_counter);
             network.addPost(newPost);
-        }catch (SocialNetworkError error){
+        }catch (IllegalLengthException error){
             System.out.println(error);
         }
 
@@ -150,12 +153,12 @@ public class TestSet {
         for (Post postToPrint : network.writtenBy("Yoda"))
             postToPrint.printPost();
         System.out.println("\n\n");
-        System.out.println("I post scritti da Luisa ed Edoardo dentro postList sono:");
+        System.out.println("I post scritti da Luisa ed Leonardo dentro postList sono:");
         for (Post postToPrint: network.writtenBy(postList,"Luisa")) {
             System.out.println();
             postToPrint.printPost();
         }
-        for (Post postToPrint: network.writtenBy(postList, "Edoardo")) {
+        for (Post postToPrint: network.writtenBy(postList, "Leonardo")) {
             System.out.println();
             postToPrint.printPost();
         }
@@ -164,6 +167,16 @@ public class TestSet {
         for (Post postToPrint: network.containing(words)) {
             System.out.println();
             postToPrint.printPost();
+        }
+        String prova = null;
+        try {
+            network.addPost(null);
+            System.out.println("qui");
+        }catch (IllegalLengthException e){
+
+            System.out.println(e);
+        }catch (NullPointerException NULL){
+            System.out.println("Post non valido");
         }
     }
 }

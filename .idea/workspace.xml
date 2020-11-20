@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eea3b61f-300b-4923-881d-9f937677226c" name="Default Changelist" comment="" />
+    <list default="true" id="eea3b61f-300b-4923-881d-9f937677226c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/CustomExceptions/IllegalLengthException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/GUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlogGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetworkError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoJava.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/MicroBlog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/SocialNetwork.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MicroBlog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MicroBlogGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PostInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SocialInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SocialNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SocialNetworkError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestSet.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kFT9VXpOTfJ78TktFoJGxquhPe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,11 +57,20 @@
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -27,7 +78,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TestSet">
     <configuration name="MicroBlog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MicroBlog" />
       <module name="ProgettoJava" />
@@ -35,9 +86,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MicroBlogGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MicroBlogGUI" />
+      <module name="ProgettoJava" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestSet" />
+      <module name="ProgettoJava" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestSet" />
         <item itemvalue="Application.MicroBlog" />
+        <item itemvalue="Application.MicroBlogGUI" />
       </list>
     </recent_temporary>
   </component>
@@ -52,10 +119,84 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="367" y="265" width="428" height="474" key="FileChooserDialogImpl" timestamp="1605295231907">
+    <state x="551" y="151" width="804" height="702" key="#Plugins" timestamp="1605706039987">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="367" y="265" width="428" height="474" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605295231907" />
+    <state x="551" y="151" width="804" height="702" key="#Plugins/0.0.1920.1080@0.0.1920.1080" timestamp="1605706039987" />
+    <state x="762" y="197" width="378" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605554519357">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="762" y="197" width="378" height="573" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1605554519357" />
+    <state x="357" y="175" width="428" height="474" key="FileChooserDialogImpl" timestamp="1605891534967">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="357" y="175" width="428" height="474" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1605891534967" />
+    <state x="774" y="392" key="Github.CreateGistDialog" timestamp="1605368045768">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="774" y="392" key="Github.CreateGistDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1605368045768" />
+    <state width="1812" height="336" key="GridCell.Tab.0.bottom" timestamp="1605891459987">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459987" />
+    <state width="1812" height="336" key="GridCell.Tab.0.center" timestamp="1605891459987">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459987" />
+    <state width="1812" height="336" key="GridCell.Tab.0.left" timestamp="1605891459986">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459986" />
+    <state width="1812" height="336" key="GridCell.Tab.0.right" timestamp="1605891459987">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459987" />
+    <state width="1812" height="336" key="GridCell.Tab.1.bottom" timestamp="1605891459989">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459989" />
+    <state width="1812" height="336" key="GridCell.Tab.1.center" timestamp="1605891459988">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459988" />
+    <state width="1812" height="336" key="GridCell.Tab.1.left" timestamp="1605891459988">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459988" />
+    <state width="1812" height="336" key="GridCell.Tab.1.right" timestamp="1605891459989">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1812" height="336" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1605891459989" />
+    <state x="462" y="160" key="SettingsEditor" timestamp="1605706512880">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="462" y="160" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1605706512880" />
+    <state x="661" y="419" width="587" height="202" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1605529422368">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="661" y="419" width="587" height="202" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080@0.0.1920.1080" timestamp="1605529422368" />
+    <state x="522" y="229" width="861" height="545" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1605367784131">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="522" y="229" width="861" height="545" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1080@0.0.1920.1080" timestamp="1605367784131" />
+    <state x="622" y="251" key="run.anything.popup" timestamp="1605880227178">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="622" y="251" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605880227178" />
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1605707284145">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605707284145" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.HashMap$Node" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

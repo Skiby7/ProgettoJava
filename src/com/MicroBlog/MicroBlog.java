@@ -1,10 +1,14 @@
+package com.MicroBlog;
+
+import com.MicroBlog.CustomExceptions.*;
+import com.MicroBlog.Interfaces.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MicroBlog {
-    public static void main(String args[]) throws Exception{
+    public static void main(String args[]) throws SocialNetworkError{
         String benvenuto = "Benvenuto su MicroBlog!";
         System.out.println(benvenuto);
         int post_counter = 0;
@@ -42,12 +46,14 @@ public class MicroBlog {
                         case 1:
                             scan.nextLine();
                             text = scan.nextLine();
-                            while (text.length() > 140) {
-                                System.out.println("Il testo contiene piu' di 140 caratteri");
-                                text = scan.nextLine();
-                            }
+
                             Post newPost = new Post(user, text, ++post_counter);
-                            network.addPost(newPost);
+                            try {
+                                network.addPost(newPost);
+                            }catch (IllegalLengthException e){
+                                System.out.println(e);
+                            }
+
                             break;
                         case 2:
                             network.printAllPosts();

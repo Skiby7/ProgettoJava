@@ -1,3 +1,4 @@
+package com.MicroBlog.Interfaces;
 import java.sql.Timestamp;
 import java.util.HashSet;
 

@@ -1,3 +1,7 @@
+package com.MicroBlog;
+
+import com.MicroBlog.CustomExceptions.*;
+import com.MicroBlog.Interfaces.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
