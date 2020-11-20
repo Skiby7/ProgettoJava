@@ -59,7 +59,7 @@ public class TestSet {
         for (String user: users)
             try {
                 network.follow(post_counter, user);
-            }catch (SocialNetworkError error){
+            }catch (AutoFollowException error){
                 System.out.println(error);
             }
 
@@ -96,7 +96,7 @@ public class TestSet {
                     network.follow(i,"Pacman");
                     network.follow(i,"Ratchet & Clank");
                     network.follow(i,"Yoda");
-                }catch (SocialNetworkError Error){
+                }catch (AutoFollowException Error){
                     System.out.println(Error);
                 }
             if (i>=36 && i<= 40)
@@ -106,7 +106,7 @@ public class TestSet {
                     network.follow(i, "Giacomo");
                     network.follow(i, "Luisa");
                     network.follow(i,"Rocky");
-                }catch (SocialNetworkError Error){
+                }catch (AutoFollowException Error){
                     System.out.println(Error);
                 }
             if (i>=11 && i<= 15)
@@ -114,14 +114,14 @@ public class TestSet {
                     network.follow(i, "Roberto");
                     network.follow(i, "Giacomo");
                     network.follow(i, "Luisa");
-                }catch (SocialNetworkError Error){
+                }catch (AutoFollowException Error){
                     System.out.println(Error);
                 }
             if (i<= 5)
                 try {
                     network.follow(i, "Giacomo");
                     network.follow(i, "Luisa");
-                }catch (SocialNetworkError Error){
+                }catch (AutoFollowException Error){
                     System.out.println(Error);
                 }
 
@@ -129,7 +129,7 @@ public class TestSet {
         for (String user: users)
             try {
                 network.follow(53, user);
-            }catch (SocialNetworkError error){
+            }catch (AutoFollowException error){
                 System.out.println(error);
             }
 

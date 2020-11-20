@@ -14,7 +14,7 @@ public interface SocialInterface {
     // MODIFIES: this.postSet
     // THROWS: SocialNetworError
 
-    void follow(int ID, String user) throws SocialNetworkError, NullPointerException;
+    void follow(int ID, String user) throws AutoFollowException, NullPointerException;
     // REQUIRES: ID <= postSet.size() && ID > 0 && user.length > 0 && (user contenuto nelle key della mappa linkedPeople)
     // EFFECTS:  user appartiene al set linkedPeople.get(autore del post con post.getID == ID) e
     //              l' autore del post appartiene al set followed.get(user)

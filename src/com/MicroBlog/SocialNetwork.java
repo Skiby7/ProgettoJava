@@ -32,7 +32,7 @@ public class SocialNetwork implements SocialInterface {
         postSet.add(newPost);
     }
 
-    public void follow(int ID, String user) throws SocialNetworkError, NullPointerException{
+    public void follow(int ID, String user) throws AutoFollowException, NullPointerException{
         if (user == null)
             throw new NullPointerException("Ciao ");
 
@@ -40,7 +40,7 @@ public class SocialNetwork implements SocialInterface {
         for (Post post: this.postSet){
             if (post.getId() == ID){
                 if (post.getAuthor().equals(user))
-                    throw new SocialNetworkError("Non ci si puo' seguire da soli!");
+                    throw new AutoFollowException("Non ci si puo' seguire da soli!");
                 toAdd = this.linkedPeople.get(post.getAuthor());
                 if (toAdd == null){
                     toAdd = new HashSet<>();

@@ -94,7 +94,7 @@ public class MicroBlog {
                             int id = scan.nextInt();
                             try {
                                 network.follow(id, user);
-                            } catch (SocialNetworkError Error){
+                            } catch (AutoFollowException Error){
                                 System.out.println(Error);
                             }
                             break;

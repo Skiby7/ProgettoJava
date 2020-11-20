@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eea3b61f-300b-4923-881d-9f937677226c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/CustomExceptions/IllegalLengthException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/GUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlogGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetworkError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoJava.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoJava.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/MicroBlog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/Post.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProgettoJava/SocialNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MicroBlog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MicroBlogGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PostInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SocialInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SocialNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SocialNetworkError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestSet.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/prova.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +52,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestSet">
+  <component name="RunManager" selected="Application.Sqrt">
     <configuration name="MicroBlog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MicroBlog" />
       <module name="ProgettoJava" />
@@ -93,6 +67,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Sqrt" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Sqrt" />
+      <module name="ProgettoJava" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestSet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TestSet" />
       <module name="ProgettoJava" />
@@ -102,6 +83,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Sqrt" />
         <item itemvalue="Application.TestSet" />
         <item itemvalue="Application.MicroBlog" />
         <item itemvalue="Application.MicroBlogGUI" />
@@ -127,10 +109,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="551" y="151" width="804" height="702" key="#Plugins/0.0.1920.1080@0.0.1920.1080" timestamp="1605706039987" />
-    <state x="762" y="197" width="378" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605554519357">
+    <state x="760" y="179" width="378" height="573" key="#com.intellij.ide.util.MemberChooser" timestamp="1605892043843">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="762" y="197" width="378" height="573" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1605554519357" />
+    <state x="760" y="179" width="378" height="573" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1605892043843" />
     <state x="357" y="175" width="428" height="474" key="FileChooserDialogImpl" timestamp="1605891534967">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
