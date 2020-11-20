@@ -47,7 +47,7 @@ public class MicroBlog {
                                 text = scan.nextLine();
                             }
                             Post newPost = new Post(user, text, ++post_counter);
-                            network.addPost(user, newPost);
+                            network.addPost(newPost);
                             break;
                         case 2:
                             network.printAllPosts();
