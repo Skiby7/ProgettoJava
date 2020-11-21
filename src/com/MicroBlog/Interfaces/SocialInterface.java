@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 public interface SocialInterface {
+    // Overview:
+
+
     void addPost(Post newPost) throws IllegalLengthException, EmptyTextException, NullPointerException;
     // REQUIRES: newPost != null && newPost.getText().length() <= 140
     // EFFECTS: newPost viene aggiunto al set dei post (this.postSet)
@@ -18,7 +21,7 @@ public interface SocialInterface {
     // REQUIRES: ID <= postSet.size() && ID > 0 && user.length > 0 && user != null
     // EFFECTS:  dopo la chiamata -> user appartiene al set this.linkedPeople.get(post.getAuthor) dove "post" è un post tale che post.geId() == ID.
     //           Inoltre l' autore del post appartiene al set this.followed.get(user)
-    // THROWS: SocialNetworkError se (ID == post.getId && user.equals(post.getAuthor))
+    // THROWS: AutoFollowException se (ID == post.getId && user.equals(post.getAuthor)) || NullPointerExcepiton se user == null
     // MODIFIES: this
 
     void printAllPosts();
