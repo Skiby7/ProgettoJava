@@ -11,8 +11,6 @@ public class MicroBlog {
     public static void main(String args[]) throws SocialNetworkError{
         String benvenuto = "Benvenuto su MicroBlog!";
         System.out.println(benvenuto);
-        int post_counter = 0;
-
         Scanner scan = new Scanner(System.in);
         int choice = -1;
         String user;
@@ -47,9 +45,9 @@ public class MicroBlog {
                             scan.nextLine();
                             text = scan.nextLine();
 
-                            Post newPost = new Post(user, text, ++post_counter);
+
                             try {
-                                network.addPost(newPost);
+                                network.addPost(user, text);
                             }catch (IllegalLengthException | EmptyTextException e){
                                 System.out.println(e);
                             }
