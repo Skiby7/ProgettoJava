@@ -50,8 +50,12 @@ Le strutture dati che ho scelto di usare per l'implementazione di un SocialNetwo
 
 2. `HashMap<String, Set<String>> followed`: è una hashmap che ha come chiave gli utenti che hanno avuto interazioni con gli altri utenti, anche se non hanno postato. Le `Values`, infatti sono `Set` di utenti che vengono seguiti dall'utente nella chiave, così da avere sia una mappa `utente -> persone che lo seguono` che una mappa `utente -> persone che sono seguite da lui`. Questo mi permette di implementare efficientemente il metodo `influencers`, come vedremo dopo.
 
+3. `HashSet<Post> postSet`: è un set contenente tutti i post pubblicati nel SocialNetwork. Ho scelto un `TreeSet` poiché in questo modo ho la garanzia che l'ordinamento sia mantenuto nel tempo, al prezzo di un inserimento in tempo logaritmico invece che costante (come negli `HashSet`).
+
 I principali metodi sono:
 
-* `addPost`: 
+* `addPost`: aggiunge un post all'interno di `postSet`, lanciando un'eccezione nel caso in cui il testo fosse più lungo di 140 caratteri (`IllegalLengthException`) o nel caso il testo sia vuoto (`EmptyTextException`).
+
+* `follow`: aggiunge un post all'hashmap `linkedPeople`, lanciando l'eccezione `AutoFollowException` se l'utente prova a seguirsi da solo
 
 
