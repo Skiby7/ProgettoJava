@@ -11,17 +11,18 @@ public class SocialNetwork implements SocialInterface {
 //    private HashMap<String, Set<Post>> network = new HashMap<>();
     private HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
     private HashMap<String, Set<String>> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
-    private Set<Post> postSet = new HashSet<>();
+    private Set<Post> postSet = new TreeSet<>();
     private final String separator = "---------------------";
+    private int idCounter = 0;
 
-    public void addPost(Post newPost) throws IllegalLengthException, EmptyTextException, NullPointerException{
+    public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, NullPointerException{
 //        String author = newPost.getAuthor();
 
-        if (newPost.getText().length() >= 140) // Check della lunghezza del testo
+        if (text.length() >= 140) // Check della lunghezza del testo
             throw new IllegalLengthException("Il testo puo' contenere al massimo 140 caratteri.");
-        if (newPost.getText().length() == 0)
+        if (text.length() == 0)
             throw new EmptyTextException("Il testo non puo' essere vuoto.");
-
+        Post newPost = new Post(user, text, ++idCounter);
 
 //        Set<Post> toAdd = this.network.get(author);
 //        if(toAdd == null){

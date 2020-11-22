@@ -11,8 +11,8 @@ public interface SocialInterface {
     // Overview:
 
 
-    void addPost(Post newPost) throws IllegalLengthException, EmptyTextException, NullPointerException;
-    // REQUIRES: newPost != null && newPost.getText().length() <= 140
+    void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, NullPointerException;
+    // REQUIRES: user != null && text != null && text.length() <= 140 && text.length() > 0
     // EFFECTS: newPost viene aggiunto al set dei post (this.postSet)
     // MODIFIES: this
     // THROWS: EmptyTextException se newPost.getText().size() == 0 || IllegalLengthException newPost.getText().size() > 140 || NullPointerException se newPost == null (unchecked)
