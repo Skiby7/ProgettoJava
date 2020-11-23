@@ -12,6 +12,7 @@ public class Post implements PostInterface, Comparable<Post>{
     private final String text;
     private final Timestamp time;
     private HashSet<String> followers;
+    private boolean familyFriendly;
 
     public Post(String author, String text, int id){
         if (id < 0)
@@ -24,6 +25,7 @@ public class Post implements PostInterface, Comparable<Post>{
         this.id = id; // Id del post
         this.time = new Timestamp(System.currentTimeMillis()); // Data e ora del post
         this.followers = new HashSet<String>(); // Lista di follower a cui piace il post
+        this.familyFriendly = true;
     }
     // REQUIRES: author !=  null && text != null && id >= 0
     // THROWS: IllegalArgumentException se id < 0 || NullPointerException se (author == null || text == null)
@@ -40,11 +42,22 @@ public class Post implements PostInterface, Comparable<Post>{
     public Timestamp getTime(){
         return this.time;
     }
+    public boolean getFlag(){
+        return this.familyFriendly;
+    }
     public void addFollow(String follower){
         this.followers.add(follower);
     }
 
     public HashSet<String> getFollowers(){ return this.followers; }
+
+    public void switchFamilyFriendlyOff(){
+        this.familyFriendly = false;
+    }
+
+    public void switchFamilyFriendlyOn(){
+        this.familyFriendly = false;
+    }
 
 
     public void printPost(){

@@ -11,11 +11,11 @@ public class SocialNetwork implements SocialInterface {
 //    private HashMap<String, Set<Post>> network = new HashMap<>();
     private HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
     private HashMap<String, Set<String>> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
-    private Set<Post> postSet = new TreeSet<>();
+    protected Set<Post> postSet = new TreeSet<>();
     private final String separator = "---------------------";
     private int idCounter = 0;
 
-    public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, NullPointerException{
+    public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, NullPointerException {
 //        String author = newPost.getAuthor();
 
         if (text.length() >= 140) // Check della lunghezza del testo
@@ -84,6 +84,10 @@ public class SocialNetwork implements SocialInterface {
             System.out.println("\n" + separator);
 
         }
+    }
+
+    public Set<Post> getPostSet(){
+        return this.postSet;
     }
 
     public void printSocialNetwork(){

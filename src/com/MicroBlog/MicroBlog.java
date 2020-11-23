@@ -122,7 +122,17 @@ public class MicroBlog {
             else
                 break;
             scan.nextLine();
+
        }while(true);
+        FamilyFriendlySocialNetwork ffnetwork = new FamilyFriendlySocialNetwork();
+        try {
+            ffnetwork.addPost("autore", "testo");
+
+        } catch (IllegalLengthException | EmptyTextException e){
+            System.out.println(e);
+        }
+        ffnetwork.printAllPosts();
+
         System.out.println("Arrivederci!");
     }
 }
