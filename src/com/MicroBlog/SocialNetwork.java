@@ -2,16 +2,15 @@ package com.MicroBlog;
 
 import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
-
-import javax.print.attribute.standard.NumberUp;
 import java.util.*;
+
 public class SocialNetwork implements SocialInterface {
 
 
 //    private HashMap<String, Set<Post>> network = new HashMap<>();
-    private HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
-    private HashMap<String, Set<String>> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
-    protected Set<Post> postSet = new TreeSet<>();
+    private final HashMap<String, Set<String>> linkedPeople = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguaci
+    private final HashMap<String, Set<String>> followed = new HashMap<>(); // HashMap che contiene per ogni utente i propri seguiti
+    protected final Set<Post> postSet = new TreeSet<>();
     private final String separator = "---------------------";
     private int idCounter = 0;
 
@@ -102,13 +101,25 @@ public class SocialNetwork implements SocialInterface {
 
     public Map<String,  Set<String>>  guessFollowers(List<Post> ps) throws NullPointerException{
 
-        HashMap<String, Set<String>> networkByFollowers = new HashMap<>();
+        Map<String, Set<String>> networkByFollowers = new HashMap<>();
         for (Post post: ps){
-            if (networkByFollowers.get(post.getAuthor()) == null && this.linkedPeople.get(post.getAuthor())!=null)
-                networkByFollowers.put(post.getAuthor(), this.linkedPeople.get(post.getAuthor()));
+            if (networkByFollowers.get(post.getAuthor()) == null)
+                networkByFollowers.put(post.getAuthor(), post.getFollowers());
+            else
+                networkByFollowers.get(post.getAuthor()).addAll(post.getFollowers());
         }
         return networkByFollowers;
     }
+
+//    public Map<String,  Set<String>>  guessFollowers(List<Post> ps) throws NullPointerException{
+//
+//        HashMap<String, Set<String>> networkByFollowers = new HashMap<>();
+//        for (Post post: ps){
+//            if (networkByFollowers.get(post.getAuthor()) == null && this.linkedPeople.get(post.getAuthor())!=null)
+//                networkByFollowers.put(post.getAuthor(), this.linkedPeople.get(post.getAuthor()));
+//        }
+//        return networkByFollowers;
+//    }
 
     public Map<String,  Set<String>>  guessFollowers(){
         return this.linkedPeople;
@@ -126,16 +137,38 @@ public class SocialNetwork implements SocialInterface {
 //        return influencers;
     }
 
+//    public List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException{
+//        List<String> influencers = new ArrayList<>();
+//        for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
+//            if ((this.followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+//                    || entry.getValue().size() > this.followed.get(entry.getKey()).size())
+//                influencers.add(entry.getKey());
+//        }
+//        Collections.sort(influencers);
+//        return influencers;
+//    }
     public List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException{
         List<String> influencers = new ArrayList<>();
+        Map<String, Set<String>> followedMap = new HashMap<>();
         for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
-            if ((this.followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
-                    || entry.getValue().size() > this.followed.get(entry.getKey()).size())
+            for(String people: entry.getValue()){
+                if (followedMap.get(people) == null) {
+                    followedMap.put(people, null);
+                    followedMap.get(people).add(entry.getKey());
+                }
+                else
+                    followedMap.get(people).add(entry.getKey());
+            }
+        }
+        for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
+            if ((followedMap.get(entry.getKey()) == null && !entry.getValue().isEmpty())
+                        || entry.getValue().size() > followedMap.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
         }
         Collections.sort(influencers);
         return influencers;
     }
+
 
 
     public Set<String> getMentionedUser() {
