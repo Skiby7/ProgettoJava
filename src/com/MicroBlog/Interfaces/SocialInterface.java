@@ -18,7 +18,7 @@ public interface SocialInterface {
     // THROWS: EmptyTextException se text.isBlank() ∨ IllegalLengthException se text.length() > 140 ∨ IllegalArgumentException se user.isBlank().
 
     void follow(int id, String user) throws AutoFollowException, IllegalArgumentException;
-    // REQUIRES: id ≤ postSet.size() && id > 0 && !user.isBlank()
+    // REQUIRES: id ≤ postSet.size() ∧ id > 0 ∧ !user.isBlank()
     // EFFECTS:  user ∈ this.followers.get(post.getAuthor) con post t.c. post.geId() = id.
     //           Inoltre post.getAuthor() ∈ this.followed.get(user).
     // THROWS: AutoFollowException se (id = post.getId ∧ user.equals(post.getAuthor)) ∨ IllegalArgumentException se user.isBlank().
