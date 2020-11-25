@@ -2,10 +2,8 @@ package com.MicroBlog;
 
 import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class MicroBlog {
     public static void main(String args[]) throws SocialNetworkError{
@@ -44,8 +42,6 @@ public class MicroBlog {
                         case 1:
                             scan.nextLine();
                             text = scan.nextLine();
-
-
                             try {
                                 network.addPost(user, text);
                             }catch (IllegalLengthException | EmptyTextException e){
@@ -53,6 +49,7 @@ public class MicroBlog {
                             }
 
                             break;
+
                         case 2:
                             network.printAllPosts();
 
@@ -84,7 +81,6 @@ public class MicroBlog {
                             }
                             System.out.println("_________________________");
                             break;
-
 
                         case 6:
                             scan.nextLine();
@@ -132,7 +128,6 @@ public class MicroBlog {
             System.out.println(e);
         }
         ffnetwork.printAllPosts();
-
         System.out.println("Arrivederci!");
     }
 }

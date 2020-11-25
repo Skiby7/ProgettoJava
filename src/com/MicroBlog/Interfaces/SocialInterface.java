@@ -19,7 +19,7 @@ public interface SocialInterface {
 
     void follow(int ID, String user) throws AutoFollowException, NullPointerException;
     // REQUIRES: ID <= postSet.size() && ID > 0 && user.length > 0 && user != null
-    // EFFECTS:  dopo la chiamata -> user appartiene al set this.linkedPeople.get(post.getAuthor) dove "post" è un post tale che post.geId() == ID.
+    // EFFECTS:  dopo la chiamata -> user appartiene al set this.followers.get(post.getAuthor) dove "post" è un post tale che post.geId() == ID.
     //           Inoltre l' autore del post appartiene al set this.followed.get(user)
     // THROWS: AutoFollowException se (ID == post.getId && user.equals(post.getAuthor)) || NullPointerExcepiton se user == null
     // MODIFIES: this
@@ -30,7 +30,7 @@ public interface SocialInterface {
     void printSocialNetwork();
     // EFFECTS: stampa la lista degli utenti in ordine lessicografico e per ogni utente la lista dei followers in ordine lessicografico
 
-    Map<String,  Set<String>> guessFollowers(List<Post> ps) throws NullPointerException;
+    Map<String, Set<String>> guessFollowers(List<Post> ps) throws NullPointerException;
     // REQUIRES: ps != null
     // EFFECTS: crea una mappa a partire dalla lista dei post che ha come chiave gli autori dei post
     //          e come valore un set contenente i followers degli autori.
@@ -38,13 +38,13 @@ public interface SocialInterface {
     // RETURNS: HashMap<String, Set<String>> networkByFollowers
 
     Map<String, Set<String>> guessFollowers();
-    // EFFECTS: restituisce linkedPeople, ovvero una mappa che ha per chiave gli autori dei post e come valore gli utenti che seguono gli autori
-    // RETURNS: this.linkedPeople
+    // EFFECTS: restituisce this.followers, ovvero una mappa che ha per chiave gli autori dei post e come valore gli utenti che seguono gli autori
+    // RETURNS: HashMap<String, Set<String>> this.followers
 
     List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException;
     // REQUIRES: followers != null
-    // EFFECTS: restituisce la lista di utenti tale che followers.get(user).size() > this.followed.get(user).size(),
-    //          cioe' gli utenti con piu' follower di quante persone seguano loro. Se followers == null restituisco una lista vuota
+    // EFFECTS: restituisce la lista di utenti tale che followers.get(user).size() > followed.get(user).size(),
+    //          cioe' gli utenti con piu' follower di quante persone seguano loro.
     // THROWS: NullPointerException se followers == null (unchecked)
     // RETURNS: ArrayList<String> influencers
 

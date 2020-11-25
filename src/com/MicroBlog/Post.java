@@ -11,7 +11,7 @@ public class Post implements PostInterface, Comparable<Post>{
     private final String author;
     private final String text;
     private final Timestamp time;
-    private HashSet<String> followers;
+    private final HashSet<String> followers;
     private boolean familyFriendly;
 
     public Post(String author, String text, int id){
