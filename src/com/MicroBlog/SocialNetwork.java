@@ -22,26 +22,26 @@ public class SocialNetwork implements SocialInterface {
     }
 
 
-    public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, IllegalArgumentException, NullPointerException {
+    public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, IllegalArgumentException{
         if (user.isBlank())
-            throw new IllegalArgumentException("L'username non e' valido.");
+            throw new IllegalArgumentException("L'username non è valido.");
         if (text.length() >= 140) // Check della lunghezza del testo
-            throw new IllegalLengthException("Il testo puo' contenere al massimo 140 caratteri.");
+            throw new IllegalLengthException("Il testo può contenere al massimo 140 caratteri.");
         if (text.isBlank()) // Check che il testo non sia vuoto
-            throw new EmptyTextException("Il testo non puo' essere vuoto.");
+            throw new EmptyTextException("Il testo non può essere vuoto.");
         Post newPost = new Post(user, text, ++idCounter); // Istanzio un nuovo post con user e text
         postSet.add(newPost); // Aggiungo il post nel postSet
     }
 
-    public void follow(int id, String user) throws AutoFollowException, IllegalArgumentException, NullPointerException {
-        if (user.isBlank())
-            throw new IllegalArgumentException("L'username non e' valido.");
+    public void follow(int id, String user) throws AutoFollowException, IllegalArgumentException {
+        if (user.isBlank() || id <= 0 || id > this.postSet.size())
+            throw new IllegalArgumentException("L'username o ID non valido.");
 
         Set<String> toAdd; // Dichiaro un nuovo Set nel caso l'utente del post target non abbia ancora followers
         for (Post post: this.postSet){
             if (post.getId() == id){
                 if (post.getAuthor().equals(user)) // Se l'utente si vuole seguire da solo lancio un'eccezione
-                    throw new AutoFollowException("Non ci si puo' seguire da soli!");
+                    throw new AutoFollowException("Non ci si può seguire da soli!");
                 toAdd = this.followers.get(post.getAuthor()); // toAdd si riferise al set di followers dell'utente autore del post
                 if (toAdd == null){ // Se post.getAuthor() non ha ancora seguaci, istanzio un nuovo HashSet e lo aggiungo alla mappa
                     toAdd = new HashSet<>();
@@ -49,7 +49,7 @@ public class SocialNetwork implements SocialInterface {
                     this.followers.put(post.getAuthor(), toAdd);
                 }
                 else {
-                    this.followers.get(post.getAuthor()).add(user); // Se l'utente ha gia' dei followers, aggiungo user al Set
+                    this.followers.get(post.getAuthor()).add(user); // Se l'utente ha già dei followers, aggiungo user al Set
                 }
                 post.addFollow(user); // Aggiungo il follower anche al post
                 addFollowed(user, post.getAuthor()); // Popolo la mappa followed
@@ -60,7 +60,7 @@ public class SocialNetwork implements SocialInterface {
     }
 
     private void addFollowed (String user, String followedUser) throws NullPointerException  {
-        Set<String> toAdd = this.followed.get(user); // Stesso procedimento di prima, dove followedUser e' l'autore del post
+        Set<String> toAdd = this.followed.get(user); // Stesso procedimento di prima, dove followedUser è l'autore del post
         if (toAdd == null){
             toAdd = new HashSet<>();
             toAdd.add(followedUser);
@@ -98,8 +98,8 @@ public class SocialNetwork implements SocialInterface {
 
     public Map<String,  Set<String>>  guessFollowers(List<Post> ps) throws NullPointerException{
         Map<String, Set<String>> networkByFollowers = new HashMap<>();
-        for (Post post: ps){ // Per ogni post in ps controllo se post.getAuthor() e' gia' stato inserito nella mappa
-            if (networkByFollowers.get(post.getAuthor()) == null) // Se l'autore del post non e' ancora presente lo inserisco insieme a tutti i follower di quel post
+        for (Post post: ps){ // Per ogni post in ps controllo se post.getAuthor() è già stato inserito nella mappa
+            if (networkByFollowers.get(post.getAuthor()) == null) // Se l'autore del post non è ancora presente lo inserisco insieme a tutti i follower di quel post
                 networkByFollowers.put(post.getAuthor(), post.getFollowers());
 
             else // Altrimenti aggiungo tutti i follower del post dato che, usando un Set, sono sicuro di non avere duplicati
@@ -115,7 +115,7 @@ public class SocialNetwork implements SocialInterface {
     public List<String> influencers(){
       List<String> influencers = new ArrayList<>();
         for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
-            // Per ogni entry controllo se l'utente ha piu' followers che followed
+            // Per ogni entry controllo se l'utente ha più followers che followed
             if ((followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
                     || entry.getValue().size() > followed.get(entry.getKey()).size())
                 influencers.add(entry.getKey());
@@ -123,17 +123,6 @@ public class SocialNetwork implements SocialInterface {
         Collections.sort(influencers); // Ordino lessicograficamente l'arraylist
         return influencers;
     }
-
-//    public List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException{
-//        List<String> influencers = new ArrayList<>();
-//        for (Map.Entry<String,Set<String>> entry: followers.entrySet()){
-//            if ((this.followed.get(entry.getKey()) == null && !entry.getValue().isEmpty())
-//                    || entry.getValue().size() > this.followed.get(entry.getKey()).size())
-//                influencers.add(entry.getKey());
-//        }
-//        Collections.sort(influencers);
-//        return influencers;
-//    }
 
     public List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException{
         // Questo metodo accetta anche mappe followers di utenti che non sono dentro il social network
@@ -175,7 +164,7 @@ public class SocialNetwork implements SocialInterface {
         return mentionedUsers;
     }
 
-    public List<Post> writtenBy(String username) throws IllegalArgumentException, NullPointerException{
+    public List<Post> writtenBy(String username) throws IllegalArgumentException{
         if (username.isBlank())
             throw new IllegalArgumentException("Username non valido");
         return writtenBy(new ArrayList<>(this.postSet), username); // Se non viene specificata una laista di post, cerco in tutti i post pubblicati
@@ -194,7 +183,7 @@ public class SocialNetwork implements SocialInterface {
             System.out.println("Nessun post trovato :(");
             return wroteBy;
         }
-        Collections.sort(wroteBy); // Ordino in ordine cronologico inverso i post (dal piu' recente al piu' vecchio)
+        Collections.sort(wroteBy); // Ordino in ordine cronologico inverso i post (dal più recente al più vecchio)
         return wroteBy;
     }
 

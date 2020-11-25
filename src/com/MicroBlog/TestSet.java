@@ -101,6 +101,11 @@ public class TestSet {
         System.out.println("Vediamo se posso ripostare");
         MicroBlog.printAllPosts();
 
+        Post nullpost = null;
+        nullpost.getId();
+        List<Post> postlista = new ArrayList<>();
+        postlista.add(nullpost);
+        MicroBlog.getMentionedUser(postlista);
 
     }
 

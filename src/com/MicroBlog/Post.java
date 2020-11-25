@@ -45,7 +45,9 @@ public class Post implements PostInterface, Comparable<Post>{
     public boolean getFlag(){
         return this.familyFriendly;
     }
-    public void addFollow(String follower){
+    public void addFollow(String follower) throws IllegalArgumentException{
+        if (follower.isBlank())
+            throw new IllegalArgumentException("Stringa non valida");
         this.followers.add(follower);
     }
 
@@ -56,7 +58,7 @@ public class Post implements PostInterface, Comparable<Post>{
     }
 
     public void switchFamilyFriendlyOn(){
-        this.familyFriendly = false;
+        this.familyFriendly = true;
     }
 
 

@@ -1,28 +1,41 @@
 package com.MicroBlog.Interfaces;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Set;
 
 
 public interface PostInterface {
     // Overview: tipo modificabile che implementa il dato Post
 
     String getAuthor();
-    // EFFECTS:restituisce l'autore del post
+    // RETURNS:restituisce l'autore del post
+    String getText();
+    // RETURNS: restituisce il testo del post
     int getId();
-    // EFFECTS: restituisce l'ID del post
+    // RETURNS: restituisce l'ID del post
     Timestamp getTime();
-    // EFFECTS: restituisce il timestamp del post
+    // RETURNS: restituisce il timestamp del post
+    boolean getFlag();
+    // RETURNS: restituisce true se il contenuto non è stato segnaleto, altrimenti restituisce false
+    HashSet<String> getFollowers();
+    // RETURNS: restituisce un Set contenente le persone che seguono il post
 
-    void addFollow(String follower);
-    // REQUIRES: follower != null
+    void addFollow(String follower)throws IllegalArgumentException;
+    // REQUIRES: !follower.isBlank()
     // EFFECTS: aggiunge una stringa al Set di followers
     // MODIFIES: this
-    HashSet<String> getFollowers();
-    // EFFECTS: restituisce un Set contenente le persone che seguono il post, se nessuno segue il post restuisce un Set vuoto
+    // THROWS: IllegalArgumentException se follower.isBlank()
+
 
     void printPost();
     // EFFECTS: stampa il post formattato
 
 
+    void switchFamilyFriendlyOff();
+    // EFFECTS: segnala il contenuto
+    // MODIFIES: this
 
+    void switchFamilyFriendlyOn();
+    // EFFECTS: ripristina il contenuto
+    // MODIFIES: this
 }

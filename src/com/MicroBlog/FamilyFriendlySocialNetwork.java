@@ -82,7 +82,7 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             }
 
         }
-        System.out.println("La lista dei post e' stata aggiornata.");
+        System.out.println("La lista dei post è stata aggiornata.");
     }
 
     public void removeFlag(int id){
