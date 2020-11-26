@@ -81,6 +81,9 @@ public class SocialNetwork implements SocialInterface {
             System.out.println("\n");
         }
     }
+    public Map<String, Set<String>> getFollowed(){
+        return this.followed;
+    }
 
     public Set<Post> getPostSet(){
         return this.postSet;
