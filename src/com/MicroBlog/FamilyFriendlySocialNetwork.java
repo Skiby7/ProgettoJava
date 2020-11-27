@@ -3,9 +3,7 @@ package com.MicroBlog;
 import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.FamilyInterface;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.TreeSet;
+import java.util.*;
 
 
 public class FamilyFriendlySocialNetwork extends SocialNetwork implements FamilyInterface {
@@ -57,6 +55,63 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             System.out.println("Il post è stato segnalato, attualmente non è possibile interagirci.");
     }
 
+    @Override
+    public List<Post> writtenBy(String username) throws IllegalArgumentException {
+        if (username.isBlank())
+            throw new IllegalArgumentException();
+        return writtenBy(new LinkedList<>(super.postSet), username);
+    }
+
+    @Override
+    public List<Post> writtenBy(List<Post> ps, String username) throws IllegalArgumentException, NullPointerException {
+        if (username.length() == 0)
+            throw new IllegalArgumentException("Username non valido");
+
+        List<Post> wroteBy = new ArrayList<>();
+        for (Post post: ps)
+            if (post.getAuthor().equals(username) && post.getFlag())
+                wroteBy.add(post);
+
+        if (wroteBy.isEmpty()){
+            System.out.println("Nessun post trovato :(");
+            return wroteBy;
+        }
+        Collections.sort(wroteBy); // Ordino in ordine cronologico inverso i post (dal più recente al più vecchio)
+        return wroteBy;
+    }
+
+    @Override
+    public List<Post> containing(List<String> words) throws NullPointerException {
+        List<Post> contains = new LinkedList<>();
+        String[] parsedText;
+        boolean found = false;
+        for (Post toScan : this.postSet) { // Per ogni post guardo se ogni parola fosse contenuta nella lista di post, anche se parzialmente
+            found = false;
+            for (String word : words) {
+                if (word.isBlank())
+                    throw new IllegalArgumentException("Stringa non valida");
+                parsedText = toScan.getText().split("[^a-zA-Z]+");
+                for (String parsedWord: parsedText) {
+                    if (parsedWord.toLowerCase().matches(word.toLowerCase() + "[a-z]*")) {
+                        if (toScan.getFlag())
+                            contains.add(toScan);
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                    break;
+
+            }
+        }
+        if (contains.isEmpty()) {
+            System.out.println("Non ho trovato risultati :(");
+            return contains;
+        }
+        return contains;
+    }
+
+
     public void printReportedPost(){
         for (Post post: super.postSet){
             if (!post.getFlag()){
@@ -79,8 +134,20 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
                 return;
             }
         }
-        System.out.println("Post segnalato con successo");
     }
+
+    public void reportPost(int id) throws IllegalArgumentException{
+        if (id <= 0 || id > super.postSet.size())
+            throw new IllegalArgumentException("Input errato");
+        for (Post post: super.postSet){
+            if (post.getId() == id) {
+                post.switchFamilyFriendlyOff();
+                this.reportedId.add(post.getId());
+                return;
+            }
+        }
+    }
+
 
     public void reportPostsByWord(String badWords) throws IllegalArgumentException{
         if (badWords.isBlank())
@@ -101,7 +168,6 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             }
 
         }
-        System.out.println("La lista dei post è stata aggiornata.");
     }
 
     public void removeFlag(int id){
@@ -113,5 +179,9 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             }
         }
         System.out.println("Post non trovato.");
+    }
+
+    public TreeSet<Integer> getReportedIds(){
+        return this.reportedId;
     }
 }

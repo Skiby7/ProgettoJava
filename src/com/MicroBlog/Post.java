@@ -64,10 +64,10 @@ public class Post implements PostInterface, Comparable<Post>{
 
     public void printPost(){
         System.out.println("Autore: " + this.getAuthor() + "\tPost ID:" + this.getId() + "\n----------");
-        System.out.println(this.getText());
+        System.out.println("\033[1m"+this.getText()+"\033[0m");
         System.out.println("Data e ora del post: " + this.getTime().toString());
         if (this.followers.size()!=0) {
-            System.out.print("----------\nQuesto post e' seguito da: ");
+            System.out.print("----------\nQuesto post è seguito da: ");
             for (String follower : followers) {
                 System.out.print(follower + "   ");
             }
