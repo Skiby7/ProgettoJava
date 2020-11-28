@@ -3,7 +3,6 @@ package com.MicroBlog;
 import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
 
-import java.nio.file.LinkOption;
 import java.util.*;
 
 public class SocialNetwork implements SocialInterface {
@@ -164,7 +163,10 @@ public class SocialNetwork implements SocialInterface {
 
 
     public Set<String> getMentionedUser() {
-        return getMentionedUser(new ArrayList<>(this.postSet)); // Converto this.postSet in un ArrayList e chiamo getMentionedUser
+        Set<String> mentionedUsers = new TreeSet<>();
+        for (Post post : this.postSet)
+            mentionedUsers.add(post.getAuthor());
+        return mentionedUsers;
     }
 
     public Set<String> getMentionedUser(List<Post> ps) throws NullPointerException { // Questo metodo estrae la lista degli utenti che hanno postato da una generica lista di post
@@ -177,7 +179,17 @@ public class SocialNetwork implements SocialInterface {
     public List<Post> writtenBy(String username) throws IllegalArgumentException {
         if (username.isBlank())
             throw new IllegalArgumentException("Username non valido");
-        return writtenBy(new ArrayList<>(this.postSet), username); // Se non viene specificata una laista di post, cerco in tutti i post pubblicati
+        List<Post> wroteBy = new ArrayList<>();
+        for (Post post : this.postSet)
+            if (post.getAuthor().equals(username))
+                wroteBy.add(post);
+
+        if (wroteBy.isEmpty()) {
+            System.out.println("Nessun post trovato :(");
+            return wroteBy;
+        }
+        Collections.sort(wroteBy); // Ordino in ordine cronologico inverso i post (dal più recente al più vecchio)
+        return wroteBy;
     }
 
     public List<Post> writtenBy(List<Post> ps, String username) throws IllegalArgumentException, NullPointerException {
@@ -200,7 +212,7 @@ public class SocialNetwork implements SocialInterface {
     public List<Post> containing(List<String> words) throws IllegalArgumentException, NullPointerException {
         List<Post> contains = new LinkedList<>();
         String[] parsedText;
-        boolean found = false;
+        boolean found;
         for (Post toScan : this.postSet) { // Per ogni post guardo se ogni parola fosse contenuta nella lista di post, anche se parzialmente
             found = false;
             for (String word : words) {
@@ -219,11 +231,11 @@ public class SocialNetwork implements SocialInterface {
 
             }
         }
-            if (contains.isEmpty()) {
-                System.out.println("Non ho trovato risultati :(");
-                return contains;
-            }
+        if (contains.isEmpty()) {
+            System.out.println("Non ho trovato risultati :(");
             return contains;
+        }
+        return contains;
         }
     }
 

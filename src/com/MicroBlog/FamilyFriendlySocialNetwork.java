@@ -29,6 +29,17 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
 
         super.addPost(user, text); // Se tutto va bene aggiungo il post
     }
+
+    @Override
+    public Set<Post> getPostSet() {
+        Set<Post> allowedSet = new TreeSet<>();
+        for (Post post: super.postSet)
+            if (!reportedId.contains(post.getId()))
+                allowedSet.add(post);
+
+        return allowedSet;
+    }
+
     public HashSet<String> getBadWords(){
         return this.badWords;
     }
@@ -125,14 +136,16 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
     public void reportPost(int id, String badWords) throws IllegalArgumentException{
         if (id <= 0 || id > super.postSet.size() || badWords.isBlank())
             throw new IllegalArgumentException("Input errato");
+        reportPostsByWord(badWords);
         String[] toFilter = badWords.split("[^a-zA-Z]+");
-        this.badWords.addAll(Arrays.asList(toFilter));
         for (Post post: super.postSet){
-            if (post.getId() == id) {
+            if (post.getId() == id && post.getFlag()) {
                 post.setFamilyFriendlyOff();
                 this.reportedId.add(post.getId());
                 return;
             }
+            else if (post.getId() == id && !post.getFlag())
+                return;
         }
     }
 
@@ -151,23 +164,58 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
 
     public void reportPostsByWord(String badWords) throws IllegalArgumentException{
         if (badWords.isBlank())
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Stringa non valida");
         String[] toFilter = badWords.split("[^a-zA-Z]+");
+        boolean found;
         this.badWords.addAll(Arrays.asList(toFilter));
         String[] parsedText;
         for (Post post: super.postSet){
+            found = false;
             parsedText = post.getText().split("[^a-zA-Z]+");
-            for (String word: this.badWords){
+            for (String word: toFilter){
                 for (String textWord: parsedText){
                     if (word.toLowerCase().equals(textWord.toLowerCase())){
+                        found = true;
+
                         post.setFamilyFriendlyOff();
                         this.reportedId.add(post.getId());
                     }
 
                 }
+                if (found)
+                    break;
             }
 
         }
+    }
+
+    public void restoreWords(String goodWords){
+        if (goodWords.isBlank())
+            throw new IllegalArgumentException("Stringa non valida");
+        String[] toRestore = goodWords.split("[^a-zA-Z]+");
+        this.badWords.removeAll(Arrays.asList(toRestore));
+        boolean notYet;
+        String[] parsedText;
+        for (Post post: super.postSet){
+            notYet = false;
+            parsedText = post.getText().split("[^a-zA-Z]+");
+            for (String word: this.badWords){
+                for (String textWord: parsedText){
+                    if (textWord.toLowerCase().equals(word.toLowerCase())) {
+                        notYet = true;
+                        break;
+                    }
+                }
+                if (!notYet){
+                    post.setFamilyFriendlyOn();
+                    this.reportedId.remove(post.getId());
+                }
+            }
+
+        }
+
+
+
     }
 
     public void removeFlag(int id) throws IllegalArgumentException{
