@@ -68,17 +68,18 @@ public interface SocialInterface {
     // THROWS: IllegalArgumentException se username.isBlank()
     // RETURNS: ArrayList<Post> wroteBy
 
-    List<Post> writtenBy(List<Post> ps, String username) throws IllegalArgumentException;
+    List<Post> writtenBy(List<Post> ps, String username) throws IllegalArgumentException, NullPointerException;
     // REQUIRES: !username.isBlank() ∧  ps ≠ null
     // EFFECTS: la lista wroteBy contiene tutti e solo i post ∈ ps t.c. post.getAuthor.equals(username).
     //
     // THROWS: IllegalArgumentException se username.isBlank()
     // RETURNS: ArrayList<Post> wroteBy
 
-    List<Post> containing(List<String> words) throws NullPointerException;
-    // REQUIRES: words ≠ null ∧ ∀word ∈ words, word ≠ null
-    // EFFECTS: la lista contains contiene tutti e solo i post t.c. post.getText().contains(word) ∀word ∈ words
-    // THROWS: NullPointerException se words = null ∧ NullPointerException se words ∋ word = null
+    List<Post> containing(List<String> words) throws NullPointerException, IllegalArgumentException;
+    // REQUIRES: words ≠ null ∧ ∀word ∈ words, word ≠ null ∧ ∀word ∈ words, !word.isBlank()
+    // EFFECTS: la lista contains contiene tutti e solo i post t.c.  ∀postWord ∈ post.getText() dopo il parsing,
+    //          postWord.matches(word + "[a-z]+"), con word ∈ words
+    // THROWS: NullPointerException se words = null ∧ NullPointerException se words ∋ word = null ∧ IllegalArgumentException se words ∋ word.isBlank()
     // RETURNS: List<Post> contains
 
 }

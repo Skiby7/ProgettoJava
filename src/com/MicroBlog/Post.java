@@ -4,6 +4,7 @@ import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 
 public class Post implements PostInterface, Comparable<Post>{
@@ -11,7 +12,7 @@ public class Post implements PostInterface, Comparable<Post>{
     private final String author;
     private final String text;
     private final Timestamp time;
-    private final HashSet<String> followers;
+    private final TreeSet<String> followers;
     private boolean familyFriendly;
 
     public Post(String author, String text, int id){
@@ -24,7 +25,7 @@ public class Post implements PostInterface, Comparable<Post>{
         this.text = text; // Corpo del post
         this.id = id; // Id del post
         this.time = new Timestamp(System.currentTimeMillis()); // Data e ora del post
-        this.followers = new HashSet<String>(); // Lista di follower a cui piace il post
+        this.followers = new TreeSet<String>(); // Lista di follower a cui piace il post
         this.familyFriendly = true;
     }
     // REQUIRES: author !=  null && text != null && id >= 0
@@ -51,13 +52,13 @@ public class Post implements PostInterface, Comparable<Post>{
         this.followers.add(follower);
     }
 
-    public HashSet<String> getFollowers(){ return this.followers; }
+    public TreeSet<String> getFollowers(){ return this.followers; }
 
-    public void switchFamilyFriendlyOff(){
+    public void setFamilyFriendlyOff(){
         this.familyFriendly = false;
     }
 
-    public void switchFamilyFriendlyOn(){
+    public void setFamilyFriendlyOn(){
         this.familyFriendly = true;
     }
 

@@ -81,7 +81,7 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
     }
 
     @Override
-    public List<Post> containing(List<String> words) throws NullPointerException {
+    public List<Post> containing(List<String> words) throws NullPointerException, IllegalArgumentException {
         List<Post> contains = new LinkedList<>();
         String[] parsedText;
         boolean found = false;
@@ -129,7 +129,7 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
         this.badWords.addAll(Arrays.asList(toFilter));
         for (Post post: super.postSet){
             if (post.getId() == id) {
-                post.switchFamilyFriendlyOff();
+                post.setFamilyFriendlyOff();
                 this.reportedId.add(post.getId());
                 return;
             }
@@ -141,7 +141,7 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             throw new IllegalArgumentException("Input errato");
         for (Post post: super.postSet){
             if (post.getId() == id) {
-                post.switchFamilyFriendlyOff();
+                post.setFamilyFriendlyOff();
                 this.reportedId.add(post.getId());
                 return;
             }
@@ -160,7 +160,7 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
             for (String word: this.badWords){
                 for (String textWord: parsedText){
                     if (word.toLowerCase().equals(textWord.toLowerCase())){
-                        post.switchFamilyFriendlyOff();
+                        post.setFamilyFriendlyOff();
                         this.reportedId.add(post.getId());
                     }
 
@@ -170,15 +170,20 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
         }
     }
 
-    public void removeFlag(int id){
+    public void removeFlag(int id) throws IllegalArgumentException{
+        if (id > super.postSet.size() || id <= 0)
+            throw new IllegalArgumentException("ID non valido");
         for (Post post: super.postSet){
             if (post.getId() == id){
-                post.switchFamilyFriendlyOn();
+                if (post.getFlag()){
+                    System.out.println("Il post non era stato segnalato");
+                    return;
+                }
+                post.setFamilyFriendlyOn();
                 this.reportedId.remove(post.getId());
                 return;
             }
         }
-        System.out.println("Post non trovato.");
     }
 
     public TreeSet<Integer> getReportedIds(){

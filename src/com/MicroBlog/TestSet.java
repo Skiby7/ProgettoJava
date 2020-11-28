@@ -28,7 +28,8 @@ public class TestSet {
             }
         }
         System.out.println();
-        String explain = "Il seguente test prenderà 10 username a cui associerà alcuni post,\nper poi testare il funzionamento di MicroBlog.";
+        String explain = "Il seguente test prenderà 10 username a cui associerà alcuni post,\nper poi testare il funzionamento di MicroBlog.\n" +
+                "Dopo ogni passaggio verrà richiesto di premere invio per continuare.";
         System.out.println(explain);
         System.out.println("\n\033[3mPremere invio per iniziare.\033[0m");
         scan.nextLine();
@@ -62,7 +63,7 @@ public class TestSet {
         System.out.println("MicroBlog.getMentionedUser():\n" + MicroBlog.getMentionedUser());
 
         // Interazioni
-        System.out.println("\n\nAdesso alcuni utenti ne seguiranno ( -> ) altri.\n\033[3mPremere invio per continuare.\033[0m");
+        System.out.println("\n\nAdesso alcuni utenti ne seguiranno ( -> ) altri.\n\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
         System.out.format("%-21s %-21s %-21s\n%-21s %-21s %-21s\n%-21s %-21s %-21s\n",
                 usernames[0], usernames[4], usernames[8],
@@ -119,13 +120,12 @@ public class TestSet {
         }
         System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
-        System.out.println("\n\nControllando col metodo getFollowed, che restituise la mappa (user, utente_seguito_da_user), si ottiene:\n");
+        System.out.println("\n\nFormattando l'output della mappa restituita da getFollowed (user, utente_seguito_da_user), si ottiene:\n");
         MicroBlog.printSocialNetworkbyFollowed();
-        System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
+        System.out.println("\n\033[3mPremere invio per controllare l'output di Microblog.guessFollowers().\033[0m");
         scan.nextLine();
-        System.out.println("\n\nMentre formattando l'output della mappa derivata da MicroBlog.guessFollowers() si ottiene:\n");
         MicroBlog.printSocialNetwork();
-        System.out.println("\n\nVediamo ora la lista degli influencers.\n\033[3mPremere invio per continuare.\033[0m" );
+        System.out.println("\n\nVediamo ora la lista degli influencers.\n\n\033[3mPremere invio per continuare.\033[0m" );
         scan.nextLine();
         System.out.println("MicroBlog.influencers() -> " + MicroBlog.influencers());
         System.out.println("\nInfatti, la ripartizione di followers e followed degli utenti che hanno avuto interazioni è la seguente:\n");
@@ -143,10 +143,10 @@ public class TestSet {
 
             }
         }
-        System.out.println("\033[3mPremere invio per continuare.\033[0m");
+        System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
         System.out.println("Aggiungo quindi dei post al social network ed eseguo il test dei metodi di ricerca:");
-        System.out.print("Ricerca per nome utente -> MicroBlog.writtenBy(\"Alessia\")\n\033[3mPremere invio per continuare.\033[0m");
+        System.out.print("Ricerca per nome utente -> MicroBlog.writtenBy(\"Alessia\")\n\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
         i = 10;
         for (String user: usernames) {
@@ -172,7 +172,7 @@ public class TestSet {
         search.add("language");
         search.add("cat");
 
-        System.out.println("Ricerca per contenuto -> MicroBlog.containing(\"" + search + "\")\n\033[3mPremere invio per continuare.\033[0m");
+        System.out.println("Ricerca per contenuto -> MicroBlog.containing(\"" + search + "\")\n\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
         for (Post result: MicroBlog.containing(search)){
             result.printPost();
@@ -182,8 +182,8 @@ public class TestSet {
             System.out.println();
         }
 
-        System.out.println("Passiamo ora al Test delle funzioni di report:\nPer semplicità, inserirò le parole cercate nel punto prima nella lista dei termini" +
-                " bannati, per poi cercarli nuovamente.\n\033[3mPremere invio per continuare.\033[0m");
+        System.out.println("Passiamo ora al Test delle funzioni di segnalazione:\nPer semplicità, inserirò le parole cercate nel punto prima nella lista dei termini" +
+                " bannati, per poi cercarli nuovamente.\n\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
 
         MicroBlog.reportPostsByWord("cat language software");
@@ -195,8 +195,8 @@ public class TestSet {
             System.out.println();
         }
         System.out.println("\033[3mTrovare un post contenente \"Cats\" è normale, poiché la parola bannata è \"cat\" e la ricerca trova termini simili a quelli richiesti," +
-                "\nal contrario della segnalazione che è più stringente nella ricerca dei vocaboli\033[0m");
-        System.out.println("\nAdesso ripristinerò i post bannati e testerò la segnalazione tramite ID, rimuovendo tutti i post con ID diverso da 3 e 4.\n\033[3mPremere invio per continuare.\033[0m");
+                "\nal contrario della segnalazione che è più stringente nella ricerca dei vocaboli.\033[0m");
+        System.out.println("\nAdesso ripristinerò i post bannati e testerò la segnalazione tramite ID, rimuovendo tutti i post con ID diverso da 3 e 4.\n\n\033[3mPremere invio per continuare.\033[0m");
         scan.nextLine();
         TreeSet<Integer> iterator = new TreeSet<>(MicroBlog.getReportedIds());
         for(Integer id: iterator){
@@ -208,7 +208,78 @@ public class TestSet {
             MicroBlog.reportPost(j);
         }
         MicroBlog.printAllPosts();
-        System.out.println("Grazie per l'attenzione!");
+        System.out.println("Stampando gli ID dei post segnalati, vediamo che effettivamente sono tutti segnalati\ntranne il terzo e il quarto e che non è possibile interagire con gli altri");
+        System.out.println("MicroBlog.getReportedIds() -> " + MicroBlog.getReportedIds());
+        System.out.println("Lorenzo -> Post ID 1 (Alessia):");
+        try{
+            MicroBlog.follow(1, "Lorenzo");
+        }catch (IllegalArgumentException | AutoFollowException e){
+            System.out.println("\n" + e + "\n");
+        }
+        System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
+        scan.nextLine();
+        TreeSet<Integer> iterator2 = new TreeSet<>(MicroBlog.getReportedIds());
+        for(Integer id: iterator2){
+            MicroBlog.removeFlag(id);
+        }
+        System.out.println("Vediamo infine la gestione delle eccezioni:\nAdesso proverò a inserire un post con più di 140 caratteri, uno vuoto e uno senza utente");
+        System.out.println("Lorenzo scrive: \"\033[3mLorem ipsum dolor sit amet...\033[0m\" -> 900 caratteri");
+        System.out.println("Lorenzo scrive: \"   \"");
+        System.out.println("Nessuno scrive: \"Ciao\"\n");
+        System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
+        scan.nextLine();
+        try{
+            MicroBlog.addPost("Lorenzo", tooLong);
+        }catch (IllegalArgumentException | IllegalLengthException | EmptyTextException e){
+            System.out.println("\n" + e);
+        }
+        try{
+            MicroBlog.addPost("Lorenzo", "   ");
+        }catch (IllegalArgumentException | IllegalLengthException | EmptyTextException e){
+            System.out.println("\n" + e);
+        }
+        try{
+            MicroBlog.addPost("", "Ciao");
+        }catch (IllegalArgumentException | IllegalLengthException | EmptyTextException e){
+            System.out.println("\n" + e);
+        }
+
+        System.out.println("\nVediamo ora se si prova a seguire un post non esistente o a seguire se stessi:");
+        System.out.println("Lorenzo -> post ID: 50");
+        System.out.println("Alessia -> Alessia (post ID: 1)");
+        System.out.println("\n\033[3mPremere invio per continuare.\033[0m");
+        scan.nextLine();
+        try{
+            MicroBlog.follow(50, "Lorenzo");
+        }catch (IllegalArgumentException | AutoFollowException e){
+            System.out.println("\n" + e);
+        }
+        try{
+            MicroBlog.follow(1, "Alessia");
+        }catch (IllegalArgumentException | AutoFollowException e){
+            System.out.println("\n" + e);
+        }
+        System.out.println("Vediamo per concludere le eccezioni lanciate dai metodi per la segnalazione dei contenuti:");
+        System.out.println("Segnalo la parola \"   \"");
+        System.out.println("Segnalo il post con ID 50");
+        System.out.println("Rimuovo la segnalazione dal post con ID 50");
+        System.out.println("\n\033[3mPremere invio per continuare\033[0m");
+        try{
+            MicroBlog.reportPostsByWord("   ");
+        }catch (IllegalArgumentException  e){
+            System.out.println("\n" + e);
+        }
+        try{
+            MicroBlog.reportPost(50);
+        }catch (IllegalArgumentException e){
+            System.out.println("\n" + e);
+        }
+        try{
+            MicroBlog.removeFlag(50);
+        }catch (IllegalArgumentException e){
+            System.out.println("\n" + e);
+        }
+        System.out.println("\n\033[1mGrazie per l'attenzione!\033[0m");
         System.out.println("\033[3mPremere invio per uscire.\033[0m");
         scan.nextLine();
 

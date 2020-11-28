@@ -5,6 +5,9 @@
       <artifact name="ProgettoJava:jar" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -30,8 +33,9 @@
       <change afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSetGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" afterDir="false" />
     </list>
     <list id="78ee40f7-b2e4-430a-9d96-dd2067022097" name="added internal post counter" comment="" />
@@ -69,7 +73,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/progetto_SocialNetwork_prog_2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -335,10 +339,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="622" y="251" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605916360089" />
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606311921812">
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606569223575">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606311921812" />
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606569223575" />
     <state x="683" y="433" width="544" height="180" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606498309306">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
