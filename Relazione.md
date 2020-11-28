@@ -87,7 +87,7 @@ I metodi *getter* sono 3:
 
   2. `getFollowed()`: restuisce `this.followed`.
 
-  3. `guessFollowers()`: restutuisce `this.folloers`. Questo metodo non si chiama `getFollowers()` poiché era richista l'implementazione di un metodo `Map<String, Set<String>> guessFollowers(List<Post> ps)` che ha la stessa funzione ma a partire da una lista di post data, mentre per come ho costruito io la classe `SocialNetwork`, ho già una mappa di quel tipo pronta da essere restituita.
+  3. `guessFollowers()`: restutuisce `this.folloers`. Questo metodo non si chiama `getFollowers()` poiché era richista l'implementazione di un metodo `Map<String, Set<String>> guessFollowers(List<Post> ps)` che ha la stessa funzione ma a partire da una lista di post data, mentre per come ho costruito io la classe `SocialNetwork`, ho già una mappa conle stesse proprietà pronta da essere restituita.
 
 ## Metodi di cui era richiesta l'implementazione
 
@@ -197,3 +197,12 @@ if (contains.isEmpty()) {
 }
 return contains;
 ```
+
+# FamilyFriendlySocialNetwork (Parte 3)
+
+Ho pensato di estendere la classe `SocialNetwork` con la sottoclasse `FamilyFriendlySocialNetwork` introducendo dei metodi che permettessero di segnalare i post sia direttamente tramite il loro ID, che tramite una lista di *badWords*, così da popolare un dizionario, inizialmente vuoto, di parole non adatte a un pubblico sensibile. Ho scelto di implementare questo metodo di segnalazioni progressive in modo che sia l'utenza stessa a decidere cosa è ammesso e cosa no all'interno della loro rete sociale.
+
+## Funzionamento
+
+Ogni volta che viene aggiunta una parola al dizionario, la lista dei post ammessi viene aggiornata e verrà impedita la pubblicazione di nuovi post non conformi alle regole. Rimane comunque possibile ripristinare un post segnalato per errore e visualizzare l'id dei post che sono stati rimossi oltre a rimuovere una parola dal dizionario e ripristinare di conseguenza tutti i post che contenevano quella parola.
+Inoltre, ho effettuoato un override dei metodi di `SocialNetwork` che richiedono di interagire con i post, così da bloccare i contenuti offensivi ogniqualvolta vengono chiamati tali metodi. In particolare non sarà possibile seguire un post segnalato (`follow()`) e  `writtenBy` e `containing` restituiranno solo i post in cui il flag `familyFriendly` è `true`.
