@@ -7,7 +7,12 @@ import java.io.Console;
 
 public class MicroBlog {
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
     public static void main(String args[]) throws SocialNetworkError{
+        clearScreen();
         String benvenuto = "Benvenuto su MicroBlog!";
         System.out.println(benvenuto);
         Scanner scan = new Scanner(System.in);
@@ -184,12 +189,14 @@ public class MicroBlog {
                                 } catch (IllegalLengthException | EmptyTextException | IllegalArgumentException e) {
                                     System.out.println(e);
                                 }
-
+                                clearScreen();
                                 break;
 
                             case 2:
                                 network.printAllPosts();
-
+                                System.out.print("\033[3mPremi invio per continuare\033[0m");
+                                scan.nextLine();
+                                clearScreen();
                                 break;
 
                             case 3:
