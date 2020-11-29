@@ -191,24 +191,27 @@ public class MicroBlog {
                                 break;
 
                             case 3:
+                                System.out.println("GLi utenti iscritti sono:");
                                 for (String toPrint : network.getMentionedUser()) {
-                                    System.out.println(toPrint);
+                                    System.out.println("\033[3m" + toPrint + "\033[0m");
                                 }
+                                System.out.println();
                                 break;
 
                             case 4:
-                                scan.nextLine();
-                                for (Post postToPrint : network.writtenBy(scan.nextLine())){
-                                    System.out.println("\n");
-                                    postToPrint.printPost();
-                                    System.out.println("\n");
-                                }
-
+                                System.out.println("Inserisci l'utente da cercare (attenzione alle maiuscole): ");
+                                String query = scan.nextLine();
+                                try {
+                                    for (Post postToPrint : network.writtenBy(query)){
+                                        System.out.println("\n");
+                                        postToPrint.printPost();
+                                        System.out.println("\n");
+                                    }
+                                }catch (IllegalArgumentException e){System.out.println("Nome utente non valido");}
                                 break;
 
                             case 5:
-                                scan.nextLine();
-                                System.out.println("Inserisci le parole da cercare:");
+                                System.out.println("Inserisci le parole da cercare: ");
                                 String tmp;
                                 tmp = scan.nextLine();
                                 String[] tokens = tmp.split(" ");
@@ -222,7 +225,6 @@ public class MicroBlog {
                                 break;
 
                             case 6:
-                                scan.nextLine();
                                 System.out.print("Inserisci l'ID del post: ");
                                 int id = scan.nextInt();
                                 try {
@@ -243,14 +245,14 @@ public class MicroBlog {
 
                             case 9:
                                 String badWords;
-                                System.out.print("Inserisci l'ID del post (inserisci 0 per segnalare solo in base al contenuto):");
+                                System.out.print("Inserisci l'ID del post (inserisci 0 per segnalare solo in base al contenuto): ");
                                 while (!scan.hasNextInt()) {
                                     System.out.println("Inserisci un numero valido");
                                     scan.next();
                                 }
                                 id = scan.nextInt();
                                 scan.nextLine();
-                                System.out.println("Inserisci le parole che vuoi segnalare separate da uno spazio (lasciare vuoto se non si vuole segnalare nessuna parola)");
+                                System.out.println("Inserisci le parole che vuoi segnalare separate da uno spazio (lasciare vuoto se non si vuole segnalare nessuna parola): ");
                                 badWords = scan.nextLine();
                                 if (!badWords.isBlank() && id != 0)
                                     try {
