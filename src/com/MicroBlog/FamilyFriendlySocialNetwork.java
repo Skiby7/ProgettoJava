@@ -189,24 +189,28 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
         }
     }
 
-    public void restoreWords(String goodWords){
+    public void restoreWords(String goodWords) throws IllegalArgumentException{
         if (goodWords.isBlank())
             throw new IllegalArgumentException("Stringa non valida");
         String[] toRestore = goodWords.split("[^a-zA-Z]+");
         this.badWords.removeAll(Arrays.asList(toRestore));
-        boolean notYet;
+        System.out.println("restore words badword " + this.badWords);
+        boolean clean;
         String[] parsedText;
         for (Post post: super.postSet){
-            notYet = false;
+            clean = true;
             parsedText = post.getText().split("[^a-zA-Z]+");
+            for (String parsed: parsedText){
+                System.out.println(parsed);
+            }
             for (String word: this.badWords){
                 for (String textWord: parsedText){
                     if (textWord.toLowerCase().equals(word.toLowerCase())) {
-                        notYet = true;
+                        clean = false;
                         break;
                     }
                 }
-                if (!notYet){
+                if (clean){
                     post.setFamilyFriendlyOn();
                     this.reportedId.remove(post.getId());
                 }
