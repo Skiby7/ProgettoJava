@@ -29,7 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eea3b61f-300b-4923-881d-9f937677226c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" afterDir="false" />
     </list>
     <list id="78ee40f7-b2e4-430a-9d96-dd2067022097" name="added internal post counter" comment="" />
@@ -236,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606678466982</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="almost finished cli interface">
+      <created>1606679429944</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606679429944</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,7 +268,8 @@
     <MESSAGE value="addeed some exception and finished TestSet" />
     <MESSAGE value="added restoreBadword and cleaned some code" />
     <MESSAGE value="e le devi salvare le cose" />
-    <option name="LAST_COMMIT_MESSAGE" value="e le devi salvare le cose" />
+    <MESSAGE value="almost finished cli interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost finished cli interface" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="133" width="804" height="702" key="#Plugins" timestamp="1606311915698">
@@ -281,10 +288,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="691" y="275" width="528" height="489" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606308029489" />
-    <state x="376" y="-13" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606678466774">
+    <state x="374" y="-31" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606679429812">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="376" y="-13" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606678466774" />
+    <state x="374" y="-31" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606679429812" />
     <state x="-2" y="1" width="1540" height="884" key="DiffContextDialog" timestamp="1606329098398">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -357,10 +364,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="622" y="251" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605916360089" />
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606679403983">
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606684945022">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606679403983" />
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606684945022" />
     <state x="683" y="433" width="544" height="180" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606498309306">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

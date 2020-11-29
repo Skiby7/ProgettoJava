@@ -69,7 +69,8 @@ public class MicroBlog {
 
                                 case 2:
                                     network.printReportedPost();
-                                    System.out.println("Lista degli ID bannati -> " + network.getReportedIds());
+                                    System.out.println("\033[3mLista degli ID bannati -> " + network.getReportedIds() + "\033[0m");
+                                    System.out.println();
                                     break;
 
                                 case 3:
@@ -125,7 +126,7 @@ public class MicroBlog {
                                 case 5:
                                     System.out.println("Le parole segnalate sono:");
                                     for (String bad: network.getBadWords())
-                                        System.out.println("\033[3m" + bad + "\033[0m");
+                                        System.out.println("\033[3m- " + bad + "\033[0m");
                                     System.out.println();
                                     System.out.print("Inserisci le parole da ripristinare separate da uno spazio: ");
                                     badWords = scan.nextLine();
@@ -176,6 +177,7 @@ public class MicroBlog {
                         scan.nextLine();
                         switch (choice) {
                             case 1:
+                                System.out.print("Inserisci il testo del post (massimo 140 caratteri): ");
                                 text = scan.nextLine();
                                 try {
                                     network.addPost(user, text);
@@ -191,15 +193,15 @@ public class MicroBlog {
                                 break;
 
                             case 3:
-                                System.out.println("GLi utenti iscritti sono:");
+                                System.out.println("Gli utenti iscritti sono:");
                                 for (String toPrint : network.getMentionedUser()) {
-                                    System.out.println("\033[3m" + toPrint + "\033[0m");
+                                    System.out.println("\033[3m- " + toPrint + "\033[0m");
                                 }
                                 System.out.println();
                                 break;
 
                             case 4:
-                                System.out.println("Inserisci l'utente da cercare (attenzione alle maiuscole): ");
+                                System.out.print("Inserisci l'utente da cercare (attenzione alle maiuscole): ");
                                 String query = scan.nextLine();
                                 try {
                                     for (Post postToPrint : network.writtenBy(query)){
@@ -211,7 +213,7 @@ public class MicroBlog {
                                 break;
 
                             case 5:
-                                System.out.println("Inserisci le parole da cercare: ");
+                                System.out.print("Inserisci le parole da cercare: ");
                                 String tmp;
                                 tmp = scan.nextLine();
                                 String[] tokens = tmp.split(" ");
@@ -236,11 +238,14 @@ public class MicroBlog {
 
                             case 7:
                                 network.printSocialNetwork();
+                                System.out.println();
                                 break;
 
                             case 8:
+                                System.out.println("Gli Influencers sono: ");
                                 for (String influencers : network.influencers())
-                                    System.out.println(influencers);
+                                    System.out.println("\033[3m- " + influencers + "\033[0m");
+                                System.out.println();
                                 break;
 
                             case 9:
