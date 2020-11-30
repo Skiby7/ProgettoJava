@@ -1,13 +1,20 @@
 package com.MicroBlog;
 
-import com.MicroBlog.CustomExceptions.*;
 import com.MicroBlog.Interfaces.*;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.TreeSet;
 
 
+
 public class Post implements PostInterface, Comparable<Post>{
+
+    /*  Overview:   un Post è un oggetto mutabile con id univoco e progressivo t.c.
+                    se un post j viene pubblicato dopo un post i, i.getId() < j.getId().
+                    Inoltre Post contiene una stringa autore non nulla e non vuota e una
+                    stringa testo non nulla, non vuota e di lunghezza inferiore ai 140 caratteri.
+     */
+
+
     private final int id;
     private final String author;
     private final String text;

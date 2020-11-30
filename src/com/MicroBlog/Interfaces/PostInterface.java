@@ -23,7 +23,7 @@ public interface PostInterface {
 
     void addFollow(String follower)throws IllegalArgumentException;
     // REQUIRES: !follower.isBlank()
-    // EFFECTS: aggiunge una stringa al Set di followers
+    // EFFECTS: aggiunge una stringa contenente il nome del follower al Set  this.followers
     // MODIFIES: this
     // THROWS: IllegalArgumentException se follower.isBlank()
 
@@ -33,10 +33,10 @@ public interface PostInterface {
 
 
     void setFamilyFriendlyOff();
-    // EFFECTS: segnala il contenuto
+    // EFFECTS: il post è stato segnalato
     // MODIFIES: this
 
     void setFamilyFriendlyOn();
-    // EFFECTS: ripristina il contenuto
+    // EFFECTS: il post è adatto al social network
     // MODIFIES: this
 }

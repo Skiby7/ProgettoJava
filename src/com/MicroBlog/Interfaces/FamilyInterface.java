@@ -26,18 +26,16 @@ public interface FamilyInterface extends SocialInterface {
     HashSet<String> getBadWords();
     // RETURNS: il Set delle parole bannate
 
-    void printReportedPost();
-    // EFFECTS: stampa tutti e solo i post che sono stati segnalati
 
     void reportPost(int id, String badWords) throws IllegalArgumentException;
     // REQUIRES: id ≤ postSet.size() ∧ id > 0 ∧ !badWords.isBlank()
-    // EFFECTS: segnala il post con post.getId() = id e aggiunge badWords (dopo il parsing) al Set this.badWords
+    // EFFECTS: segnala il post con post.getId() = id e aggiunge badWords (dopo lo split) al Set this.badWords
     // THROWS: IllegalArgumentException se (id ≤ 0 ∨ id > super.postSet.size() ∨ badWords.isBlank())
     // MODIFIES: this
 
     void reportPostsByWord(String badWords) throws IllegalArgumentException;
     // REQUIRES: !badWords.isBlank()
-    // EFFECTS: segnala tutti i posti che contengono le parole in badWords (è una stringa, ma viene eseguito il parsing), le quali vengono aggiunte a this.badWords
+    // EFFECTS: segnala tutti i posti che contengono le parole in badWords (è una stringa, ma viene eseguito lo split), le quali vengono aggiunte a this.badWords
     // THROWS: IllegalArgumentException se badWords.isBlank()
     // MODIFIES: this
 
@@ -45,5 +43,11 @@ public interface FamilyInterface extends SocialInterface {
     // REQUIRES: id ≤ postSet.size() ∧ id > 0
     // EFFECTS: ripristina il post con post.getId() = id
     // THROWS: IllegalArgumentExcepiton se (id ≤ 0 ∨ id > super.postSet.size())
+
+    void restoreWords(String goodWords) throws IllegalArgumentException;
+    // REQUIRES: !goodWords.isBlank()
+    // EFFECTS: ripristina tutti i posti che contengono le parole in goodWords (che vengono rimosse da this.badWords) e non contengono le parole contenute in this.badWords.
+    // THROWS: IllegalArgumentException se goodWords.isBlank()
+    // MODIFIES: this
 }
 

@@ -8,8 +8,28 @@ import java.util.Map;
 import java.util.Set;
 
 public interface SocialInterface {
-    // Overview:
 
+        /*
+        Overview:   collezione mutabile di post e utenti che possono seguire altri post
+                    (e quindi altri utenti)
+        IR:
+
+        -   postSet ≠ null ∧ post.size() ≥ 0 ∧ ∀post ∈ postSet, post ≠ null ∧
+            post.getText() ∈ [0,140] ∧ !post.getAuthor.isBlank()
+
+
+        -   followers ≠ null ∧ followers.size() ≥ 0 ∧
+            ∀K ∈ followers.keySet(), !K.isBlank()
+            ∀V ∈ followers.values(), V ≠ null ∧ V.size() ≥ 0
+            ∀x ∈ V, !x.isBlank()
+
+        -   followed ≠ null ∧ followed.size() ≥ 0 ∧
+            ∀K ∈ followed.keySet(), !K.isBlank()
+            ∀V ∈ followed.values(), V ≠ null ∧ V.size() ≥ 0
+            ∀x ∈ V, !x.isBlank()
+
+        -   idCounter ≥ 0
+    */
 
     void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, IllegalArgumentException;
     // REQUIRES: user ≠ null ∧ text ≠ null ∧ text.length() ≤ 140 ∧ text.length() > 0.
@@ -19,7 +39,7 @@ public interface SocialInterface {
 
     void follow(int id, String user) throws AutoFollowException, IllegalArgumentException;
     // REQUIRES: id ≤ postSet.size() ∧ id > 0 ∧ !user.isBlank()
-    // EFFECTS:  user ∈ this.followers.get(post.getAuthor) con post t.c. post.geId() = id.
+    // EFFECTS:  user ∈ this.followers.get(post.getAuthor) con post ∈ this.postSet t.c. post.geId() = id.
     //           Inoltre post.getAuthor() ∈ this.followed.get(user).
     // THROWS: AutoFollowException se (id = post.getId ∧ user.equals(post.getAuthor)) ∨ IllegalArgumentException se user.isBlank().
     // MODIFIES: this
@@ -45,10 +65,11 @@ public interface SocialInterface {
     // RETURNS: ArrayList<String> influencers
 
     List<String> influencers(Map<String, Set<String>> followers) throws NullPointerException;
-    // REQUIRES: followers ≠ null
-    // EFFECTS: la lista influencers contiene tutti e solo gli user tali che followers.get(user).size() > followed.get(user).size(),
+    // REQUIRES: followers ≠ null ∧ ∀K ∈ followers.keySet(), !K.isBlank() ∧ ∀V ∈ followers.values(), V ≠ null ∧ V.size() ≥ 0 ∧
+    //            ∀x ∈ V, !x.isBlank()
+    // EFFECTS: la lista influencers contiene tutti e solo gli user tali che followers.get(user).size() > followedMap.get(user).size(),
     //          cioè gli utenti con più follower di quante persone seguano loro.
-    // THROWS: NullPointerException se followers = null
+    // THROWS: NullPointerException
     // RETURNS: ArrayList<String> influencers
 
     Set<String> getMentionedUser();

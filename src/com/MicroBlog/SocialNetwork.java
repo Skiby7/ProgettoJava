@@ -5,10 +5,10 @@ import com.MicroBlog.Interfaces.*;
 
 import java.util.*;
 
+
+
 public class SocialNetwork implements SocialInterface {
 
-
-    //    private HashMap<String, Set<Post>> network = new HashMap<>();
     private final HashMap<String, Set<String>> followers; // followers[a] => utenti che seguono a
     private final HashMap<String, Set<String>> followed; // followed[a] => utenti seguiti da a
     protected final Set<Post> postSet;
@@ -20,6 +20,7 @@ public class SocialNetwork implements SocialInterface {
         this.postSet = new TreeSet<>();
         this.idCounter = 0;
     }
+
 
 
     public void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, IllegalArgumentException {
@@ -68,8 +69,8 @@ public class SocialNetwork implements SocialInterface {
             this.followed.get(user).add(followedUser);
 
     }
-    // REQUIRES: User != null && followedUser != null
-    // EFFECTS: aggiunge gli utenti User e seguito alla mappa followed, che ha come chiave gli utenti della rete sociale (User) e come valore gli utenti seguiti dal User
+    // REQUIRES: !user.isBlank && !followedUser.isBlank()
+    // EFFECTS: user ∈ this.followed.keySet() ∧ followedUser ∈ this.followedUser.get(user)
     // MODIFIES: this
 
     public void printAllPosts() {

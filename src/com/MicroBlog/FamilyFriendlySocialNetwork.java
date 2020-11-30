@@ -176,16 +176,15 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
                 for (String textWord: parsedText){
                     if (word.toLowerCase().equals(textWord.toLowerCase())){
                         found = true;
-
                         post.setFamilyFriendlyOff();
                         this.reportedId.add(post.getId());
+                        break;
                     }
 
                 }
                 if (found)
                     break;
             }
-
         }
     }
 
@@ -195,34 +194,28 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
         String[] toRestore = goodWords.split("[^a-zA-Z]+");
         this.badWords.removeAll(Arrays.asList(toRestore));
         boolean clean;
-        boolean outOfLoop;
+        boolean found;
         String[] parsedText;
         for (Post post: super.postSet){
-            outOfLoop = false;
+            found = false;
             clean = true;
             parsedText = post.getText().split("[^a-zA-Z]+");
             for (String word: this.badWords){
                 for (String textWord: parsedText){
                     if (textWord.toLowerCase().equals(word.toLowerCase())) {
                         clean = false;
-                        outOfLoop = true;
+                        found = true;
                         break;
                     }
                 }
-                if (outOfLoop)
+                if (found)
                     break;
             }
             if (clean){
                 post.setFamilyFriendlyOn();
                 this.reportedId.remove(post.getId());
             }
-
-
-
         }
-
-
-
     }
 
     public void removeFlag(int id) throws IllegalArgumentException{
