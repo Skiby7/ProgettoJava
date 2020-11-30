@@ -12,8 +12,14 @@ title: Primo Progetto Intermedio
 
 # Compilazione ed esecuzione
 
-# Struttura del codice
+Dopo aver scaricato l'archivio ed averlo estratto, ci si troverà davanti a due cartelle: *Source*, *Eseguibili* e *Compilazione_Manuale*. Dentro la prima si ha tutto il codice sorgente con tutte le classi utilizzate per il progetto, in particolare dentro la cartella *Interfaces* si trovano le interfacce delle classi principali con la specifica.
+Dentro la cartella *Eseguibili*, invece, si hanno due pacchetti:
 
+* `TestSet.jar`: contiene una simulazione in cui 10 utenti interagiscono fra loro postando delle frasi celebri. Questa è la batteria di test richiesta.
+
+* `MicroBlogCLI.jar`: contiene un'interfaccia testuale con cui poter provare manualmente tutto ciò che è stato implementato nel progetto. Per accedere al ripristino dei contenuti segnalati (come vedremo nella discussione della parte 3) è sufficiente eseguire il login come *admin* (password: *admin*)
+
+I pacchetti si eseguono spostandosi dal terminale all'interno della cartella *Eseguibili* con il comando `java -jar NomePacchetto.jar`. Se si volesse compilare una delle due classi principali (`TestSet.java` o `MicroBlog.java`) è sufficiente spostarsi da terminale all'interno di *Compilazione_Manuale* e compilare col comando `javac NomeClasse.java`, per poi eseguire il programma com `java NomeClasse.java` 
 
 # Post
 
@@ -204,5 +210,73 @@ Ho pensato di estendere la classe `SocialNetwork` con la sottoclasse `FamilyFrie
 
 ## Funzionamento
 
-Ogni volta che viene aggiunta una parola al dizionario, la lista dei post ammessi viene aggiornata e verrà impedita la pubblicazione di nuovi post non conformi alle regole. Rimane comunque possibile ripristinare un post segnalato per errore e visualizzare l'id dei post che sono stati rimossi oltre a rimuovere una parola dal dizionario e ripristinare di conseguenza tutti i post che contenevano quella parola.
-Inoltre, ho effettuoato un override dei metodi di `SocialNetwork` che richiedono di interagire con i post, così da bloccare i contenuti offensivi ogniqualvolta vengono chiamati tali metodi. In particolare non sarà possibile seguire un post segnalato (`follow()`) e  `writtenBy` e `containing` restituiranno solo i post in cui il flag `familyFriendly` è `true`.
+Ogni volta che viene aggiunta una parola al dizionario, la lista dei post ammessi viene aggiornata e verrà impedita la visualizzazione di nuovi post non conformi alle nuove regole. Rimane comunque possibile ripristinare un post segnalato per errore e visualizzare l'id dei post che sono stati rimossi, oltre a rimuovere una parola dal dizionario e ripristinare di conseguenza tutti i post che contenevano quella parola.
+Inoltre, ho effettuoato un override dei metodi di `SocialNetwork` che richiedono di interagire con i post, così da bloccare i contenuti offensivi ogniqualvolta vengono chiamati tali metodi. In particolare non sarà possibile seguire un post segnalato (`follow()`) e `writtenBy()` e `containing()` restituiranno solo i post in cui il flag `familyFriendly` è `true`.
+Per vedere l'implementazione dell'override si può consultare il file *FamilyFriendlySocialNetwork.java*, per brevità qui riporterò le funzioni più interessanti, ovvero la segnalazione mediante una stringa contente le parole da bannare e la rimozione di una stringa di parole da quelle bannate con conseguente ripristino dei post:
+```java
+    public void reportPostsByWord(String badWords) throws IllegalArgumentException{
+        if (badWords.isBlank())
+            throw new IllegalArgumentException("Stringa non valida");
+        String[] toFilter = badWords.split("[^a-zA-Z]+"); // Divido le parole contenute nell'input
+        boolean found;
+        this.badWords.addAll(Arrays.asList(toFilter)); 
+        String[] parsedText;
+        for (Post post: super.postSet){
+            found = false;
+            parsedText = post.getText().split("[^a-zA-Z]+");
+            for (String word: toFilter){
+                for (String textWord: parsedText){
+                    if (word.toLowerCase().equals(textWord.toLowerCase())){
+                      // Se trovo almeno una parola segnalata, esco dal loop
+                        found = true;
+                        post.setFamilyFriendlyOff();
+                        this.reportedId.add(post.getId());
+                        break;
+                    }
+                }
+                if (found)
+                    break;
+            }
+        }
+    }
+```
+```java
+public void restoreWords(String goodWords) throws IllegalArgumentException{
+    if (goodWords.isBlank())
+        throw new IllegalArgumentException("Stringa non valida");
+    String[] toRestore = goodWords.split("[^a-zA-Z]+"); // Divido le parole contenute nella stringa in input
+    this.badWords.removeAll(Arrays.asList(toRestore)); // Rimuovo le parole in input da quelle segnalate
+    boolean clean;
+    boolean outOfLoop;
+    String[] parsedText;
+    for (Post post: super.postSet){
+        outOfLoop = false;
+        clean = true;
+        parsedText = post.getText().split("[^a-zA-Z]+"); // Per ogni post divido il testo in singole parole
+        for (String word: this.badWords){
+            for (String textWord: parsedText){
+                if (textWord.toLowerCase().equals(word.toLowerCase())) {
+                  // Se un post contiene ancora una parola segnalta, esco dal loop e passo al post successivo
+                    clean = false;
+                    outOfLoop = true;
+                    break;
+                }
+            }
+            if (outOfLoop)
+                break;
+        }
+        if (clean){
+          // Se dopo aver controlato tutte le parole del post, 
+          // questo non contiene più parole bannate, viene ripristinato
+            post.setFamilyFriendlyOn();
+            this.reportedId.remove(post.getId());
+        }
+    }
+}
+```
+I due metodi sono sostanzialmente una rivisitazione di `containig()` con la differenza che si ha una condizione più stringente sul controllo delle stringhe (`equals` invece che `matches`).
+Per quanto riguarda gli altri metodi di segnalazione/ripristino, semplicemente viene cercato l'ID del post nel Set `super.postSet` e successivamente oscurato/ripristinato.
+
+## Note
+
+Le funzioni di ripristino, in un'ipotetica implementazione del social network, dovrebbero essere ad uso esclusivo di un moderatore/admin che controlla i post che sono stati segnalati e modera i post, così da non creare confusione fra gli utenti stessi, come ho implementato nel pacchetto `MicroBlogCLI`.
