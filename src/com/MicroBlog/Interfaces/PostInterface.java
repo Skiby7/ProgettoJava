@@ -10,14 +10,19 @@ public interface PostInterface {
 
     String getAuthor();
     // RETURNS:restituisce l'autore del post
+
     String getText();
     // RETURNS: restituisce il testo del post
+
     int getId();
     // RETURNS: restituisce l'ID del post
+
     Timestamp getTime();
     // RETURNS: restituisce il timestamp del post
+
     boolean getFlag();
     // RETURNS: restituisce true se il contenuto non è stato segnaleto, altrimenti restituisce false
+
     TreeSet<String> getFollowers();
     // RETURNS: restituisce un Set contenente le persone che seguono il post
 
@@ -27,10 +32,8 @@ public interface PostInterface {
     // MODIFIES: this
     // THROWS: IllegalArgumentException se follower.isBlank()
 
-
     void printPost();
     // EFFECTS: stampa il post formattato
-
 
     void setFamilyFriendlyOff();
     // EFFECTS: il post è stato segnalato

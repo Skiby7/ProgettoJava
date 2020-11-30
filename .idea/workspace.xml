@@ -31,10 +31,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Relazione.md" beforeDir="false" afterPath="$PROJECT_DIR$/Relazione.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Relazione.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Relazione.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" afterDir="false" />
     </list>
     <list id="78ee40f7-b2e4-430a-9d96-dd2067022097" name="added internal post counter" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -275,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606759077854</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="almost done">
+      <created>1606763249783</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606763249783</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,9 +308,9 @@
     <MESSAGE value="e le devi salvare le cose" />
     <MESSAGE value="almost finished cli interface" />
     <MESSAGE value="clear screen implementation" />
-    <MESSAGE value="almost done" />
     <MESSAGE value="af and rep invariant" />
-    <option name="LAST_COMMIT_MESSAGE" value="af and rep invariant" />
+    <MESSAGE value="almost done" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="133" width="804" height="702" key="#Plugins" timestamp="1606311915698">
@@ -324,10 +329,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="691" y="275" width="528" height="489" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606308029489" />
-    <state x="366" y="-103" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606759077771">
+    <state x="364" y="-121" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606763249600">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="366" y="-103" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606759077771" />
+    <state x="364" y="-121" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606763249600" />
     <state x="-2" y="1" width="1540" height="884" key="DiffContextDialog" timestamp="1606329098398">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

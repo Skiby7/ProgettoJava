@@ -112,7 +112,6 @@ public class FamilyFriendlySocialNetwork extends SocialNetwork implements Family
                 }
                 if (found)
                     break;
-
             }
         }
         if (contains.isEmpty()) {
