@@ -29,14 +29,12 @@
   <component name="ChangeListManager">
     <list default="true" id="eea3b61f-300b-4923-881d-9f937677226c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Relazione.md" beforeDir="false" afterPath="$PROJECT_DIR$/Relazione.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Relazione.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Relazione.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/FamilyFriendlySocialNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/FamilyInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/FamilyInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/PostInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Interfaces/SocialInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/MicroBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/SocialNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/MicroBlog/TestSet.java" afterDir="false" />
     </list>
     <list id="78ee40f7-b2e4-430a-9d96-dd2067022097" name="added internal post counter" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +89,7 @@
       <recent name="$PROJECT_DIR$/.idea" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MicroBlog (1)">
+  <component name="RunManager" selected="Application.TestSet (1)">
     <configuration name="MicroBlog (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.MicroBlog.MicroBlog" />
       <module name="ProgettoJava" />
@@ -147,8 +145,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MicroBlog (1)" />
         <item itemvalue="Application.TestSet (1)" />
+        <item itemvalue="Application.MicroBlog (1)" />
         <item itemvalue="Application.TestSetGUI" />
         <item itemvalue="Application.TestSet" />
         <item itemvalue="Application.Sqrt" />
@@ -263,7 +261,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606685491988</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="almost done">
+      <created>1606756888990</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606756888990</updated>
+    </task>
+    <task id="LOCAL-00016" summary="af and rep invariant">
+      <created>1606759077854</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606759077854</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,7 +303,9 @@
     <MESSAGE value="e le devi salvare le cose" />
     <MESSAGE value="almost finished cli interface" />
     <MESSAGE value="clear screen implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear screen implementation" />
+    <MESSAGE value="almost done" />
+    <MESSAGE value="af and rep invariant" />
+    <option name="LAST_COMMIT_MESSAGE" value="af and rep invariant" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="133" width="804" height="702" key="#Plugins" timestamp="1606311915698">
@@ -310,10 +324,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="691" y="275" width="528" height="489" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1606308029489" />
-    <state x="370" y="-67" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606685491908">
+    <state x="366" y="-103" width="916" height="1021" key="CommitChangelistDialog2" timestamp="1606759077771">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="370" y="-67" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606685491908" />
+    <state x="366" y="-103" width="916" height="1021" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1606759077771" />
     <state x="-2" y="1" width="1540" height="884" key="DiffContextDialog" timestamp="1606329098398">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -326,22 +340,22 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="774" y="392" key="Github.CreateGistDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1605368045768" />
-    <state width="1796" height="10" key="GridCell.Tab.0.bottom" timestamp="1606666053505">
+    <state width="1878" height="183" key="GridCell.Tab.0.bottom" timestamp="1606762660488">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1796" height="10" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606666053505" />
-    <state width="1796" height="10" key="GridCell.Tab.0.center" timestamp="1606666053504">
+    <state width="1878" height="183" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1606762660488" />
+    <state width="1878" height="183" key="GridCell.Tab.0.center" timestamp="1606762660484">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1796" height="10" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606666053504" />
-    <state width="1796" height="10" key="GridCell.Tab.0.left" timestamp="1606666053503">
+    <state width="1878" height="183" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1606762660484" />
+    <state width="1878" height="183" key="GridCell.Tab.0.left" timestamp="1606762660483">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1796" height="10" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606666053503" />
-    <state width="1796" height="10" key="GridCell.Tab.0.right" timestamp="1606666053505">
+    <state width="1878" height="183" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1606762660483" />
+    <state width="1878" height="183" key="GridCell.Tab.0.right" timestamp="1606762660486">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1796" height="10" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606666053505" />
+    <state width="1878" height="183" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606762660486" />
     <state width="1812" height="642" key="GridCell.Tab.1.bottom" timestamp="1606495371488">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -358,10 +372,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1812" height="642" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1606495371488" />
-    <state x="454" y="28" width="1028" height="835" key="SettingsEditor" timestamp="1606755676548">
+    <state x="452" y="10" width="1028" height="835" key="SettingsEditor" timestamp="1606760423301">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="454" y="28" width="1028" height="835" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606755676548" />
+    <state x="452" y="10" width="1028" height="835" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1606760423301" />
     <state x="807" y="420" width="292" height="163" key="VCS.ChangelistChooser" timestamp="1606328953399">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -386,10 +400,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="622" y="251" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1605916360089" />
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606755655716">
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1606763185149">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606755655716" />
+    <state x="623" y="261" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1606763185149" />
     <state x="683" y="433" width="544" height="180" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606498309306">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

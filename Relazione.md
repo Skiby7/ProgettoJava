@@ -12,9 +12,10 @@ title: Primo Progetto Intermedio
 \pagebreak
 \tableofcontents
 \pagebreak
+
 # Compilazione ed esecuzione
 
-Dopo aver scaricato l'archivio ed averlo estratto, ci si troverà davanti a tre cartelle: *Source*, *Eseguibili* e *Compilazione_Manuale*. Dentro la prima si ha tutto il codice sorgente con tutte le classi utilizzate per il progetto, in particolare dentro la cartella *Interfaces* si trovano le interfacce delle classi principali con la specifica.
+Dopo aver scaricato l'archivio ed averlo estratto, ci si troverà davanti a tre cartelle: *Source*, *Eseguibili* e *Compilazione_Manuale*. Dentro la prima si ha tutto il codice sorgente con tutte le classi utilizzate per il progetto, in particolare dentro la cartella *Interfaces* si trovano le interfacce delle classi principali dove è scritta la specifica. L'invariante di rappresentazione e la funzione di astrazione di `SocialNetwork`, invece, sono nel file *SocialNetwork.java*
 Dentro la cartella *Eseguibili*, invece, si hanno due pacchetti:
 
 * `TestSet.jar`: contiene una simulazione in cui 10 utenti interagiscono fra loro postando delle frasi celebri. Questa è la batteria di test richiesta.

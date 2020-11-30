@@ -64,7 +64,7 @@ public class MicroBlog {
 
         }
     }
-    public static void main(String args[]) throws SocialNetworkError{
+    public static void main(String[] args) {
         clearScreen();
         String benvenuto = "Benvenuto su MicroBlog!";
         System.out.println(benvenuto);
@@ -78,12 +78,13 @@ public class MicroBlog {
         FamilyFriendlySocialNetwork network = new FamilyFriendlySocialNetwork();
         fillNetwork(network);
         Console console = System.console();
+        //        ======================== Inizio programma ========================
         if (console == null){
             System.out.println("Non è possibile effettuare il login come Admin");
             disableAdmin = true;
         }
+        //        ======================== Login ========================
         do {
-
             System.out.println("Vuoi fare il Login [s/n]? ");
             login = scan.nextLine();
             while(!login.toLowerCase().equals("s") && !login.toLowerCase().equals("n")){
@@ -108,9 +109,10 @@ public class MicroBlog {
                             }catch (InterruptedException ignored){}
                         }
                         try{
-                            Thread.sleep(1000);
+                            Thread.sleep(700);
                         }catch (InterruptedException ignored){}
                         System.out.println();
+                        //        ======================== Pannello di controllo Admin ========================
                         do {
                             clearScreen();
                             int id; // Per ripristinare la segnalazione
@@ -233,9 +235,10 @@ public class MicroBlog {
                         }catch (InterruptedException ignored){}
                     }
                     try{
-                        Thread.sleep(1000);
+                        Thread.sleep(700);
                     }catch (InterruptedException ignored){}
                     System.out.println();
+                    //        ======================== Menu utente ========================
                     do {
                         clearScreen();
                         System.out.println("Utente loggato: \033[1m " + user + "\033[0m");
@@ -392,10 +395,9 @@ public class MicroBlog {
             }
             else
                 break;
-//            scan.nextLine(); // Cleans the buffer
-
        }while(true);
 
         System.out.println("Arrivederci!");
+        clearScreen();
     }
 }

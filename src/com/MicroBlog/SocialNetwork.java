@@ -36,6 +36,7 @@ public class SocialNetwork implements SocialInterface {
 
     -   idCounter ≥ 0
 */
+
     private final HashMap<String, Set<String>> followers; // followers[a] => utenti che seguono a
     private final HashMap<String, Set<String>> followed; // followed[a] => utenti seguiti da a
     protected final Set<Post> postSet;
@@ -256,7 +257,6 @@ public class SocialNetwork implements SocialInterface {
                 }
                 if (found)
                     break;
-
             }
         }
         if (contains.isEmpty()) {
