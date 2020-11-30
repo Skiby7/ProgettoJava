@@ -8,7 +8,34 @@ import java.util.*;
 
 
 public class SocialNetwork implements SocialInterface {
+    /*
+    Overview:   collezione mutabile di post e utenti che possono seguire altri post
+                (e quindi altri utenti)
 
+    AF: followers: f: String -> Set | ∀K ∈ followers.keySet() => f(K) = {K è seguito da tutti gli utenti V ∈ followers.get(K)}
+
+        followed: f: String -> Set | ∀K ∈ followed.keySet() => f(K) = {K è segue tutti gli utenti V ∈ followers.get(K)}
+
+        postSet: f: [1, postSet.size()] -> (Post) | ∀i ∈ [1, postSet.size()] => f(i) = {un post p ∈ postSet | p.getId() = i}
+
+    IR:
+
+    -   postSet ≠ null ∧ post.size() ≥ 0 ∧ ∀post ∈ postSet, post ≠ null ∧
+        post.getText() ∈ [0,140] ∧ !post.getAuthor.isBlank()
+
+
+    -   followers ≠ null ∧ followers.size() ≥ 0 ∧
+        ∀K ∈ followers.keySet(), !K.isBlank()
+        ∀V ∈ followers.values(), V ≠ null ∧ V.size() ≥ 0
+        ∀x ∈ V, !x.isBlank()
+
+    -   followed ≠ null ∧ followed.size() ≥ 0 ∧
+        ∀K ∈ followed.keySet(), !K.isBlank()
+        ∀V ∈ followed.values(), V ≠ null ∧ V.size() ≥ 0
+        ∀x ∈ V, !x.isBlank()
+
+    -   idCounter ≥ 0
+*/
     private final HashMap<String, Set<String>> followers; // followers[a] => utenti che seguono a
     private final HashMap<String, Set<String>> followed; // followed[a] => utenti seguiti da a
     protected final Set<Post> postSet;

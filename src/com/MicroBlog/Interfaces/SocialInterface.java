@@ -9,27 +9,7 @@ import java.util.Set;
 
 public interface SocialInterface {
 
-        /*
-        Overview:   collezione mutabile di post e utenti che possono seguire altri post
-                    (e quindi altri utenti)
-        IR:
 
-        -   postSet ≠ null ∧ post.size() ≥ 0 ∧ ∀post ∈ postSet, post ≠ null ∧
-            post.getText() ∈ [0,140] ∧ !post.getAuthor.isBlank()
-
-
-        -   followers ≠ null ∧ followers.size() ≥ 0 ∧
-            ∀K ∈ followers.keySet(), !K.isBlank()
-            ∀V ∈ followers.values(), V ≠ null ∧ V.size() ≥ 0
-            ∀x ∈ V, !x.isBlank()
-
-        -   followed ≠ null ∧ followed.size() ≥ 0 ∧
-            ∀K ∈ followed.keySet(), !K.isBlank()
-            ∀V ∈ followed.values(), V ≠ null ∧ V.size() ≥ 0
-            ∀x ∈ V, !x.isBlank()
-
-        -   idCounter ≥ 0
-    */
 
     void addPost(String user, String text) throws IllegalLengthException, EmptyTextException, IllegalArgumentException;
     // REQUIRES: user ≠ null ∧ text ≠ null ∧ text.length() ≤ 140 ∧ text.length() > 0.
